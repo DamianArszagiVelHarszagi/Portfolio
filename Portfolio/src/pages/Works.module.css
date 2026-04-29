@@ -1,0 +1,68 @@
+.works {
+  min-height: 100vh;
+  padding: 64px 52px;
+}
+
+.header {
+  margin-bottom: 56px;
+}
+
+.label {
+  display: block;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #777;
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 100;
+  letter-spacing: -0.01em;
+  color: #ededed;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2px;
+}
+
+.card {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.cardThumb {
+  aspect-ratio: 4 / 3;
+  background: #141414;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .cardThumb {
+  transform: scale(1.02);
+}
+
+.cardInfo {
+  padding: 14px 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cardTitle {
+  font-size: 13px;
+  font-weight: 300;
+  color: #ededed;
+}
+
+.cardTag {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: #555;
+  text-transform: uppercase;
+}

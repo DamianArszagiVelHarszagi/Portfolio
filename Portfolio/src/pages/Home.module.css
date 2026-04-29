@@ -1,0 +1,111 @@
+.home {
+	display: flex;
+	min-height: 100vh;
+}
+
+/* ── Hero column ── */
+.hero {
+	flex: 1;
+	padding: 64px 52px 52px 52px;
+	display: flex;
+	flex-direction: column;
+}
+
+.nameBlock {
+	flex: 1;
+}
+
+.name {
+	font-size: clamp(60px, 7.5vw, 108px);
+	font-weight: 100;
+	line-height: 0.93;
+	letter-spacing: -0.01em;
+	color: #ededed;
+	margin-bottom: 22px;
+}
+
+.role {
+	font-size: 14px;
+	font-weight: 300;
+	color: #777;
+	letter-spacing: 0.04em;
+}
+
+/* ── Contact block ── */
+.contactBlock {
+	margin-top: 48px;
+}
+
+.contactText {
+	font-size: 12px;
+	font-weight: 300;
+	color: #555;
+	margin-bottom: 5px;
+}
+
+.contactEmail {
+	font-size: 13px;
+	font-weight: 300;
+	color: #ededed;
+	letter-spacing: 0.02em;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+	padding-bottom: 3px;
+	transition: border-color 0.2s ease;
+}
+
+.contactEmail:hover {
+	border-color: #ededed;
+}
+
+/* ── Photo block ── */
+.photoBlock {
+	margin-top: 36px;
+	width: 175px;
+}
+
+.photo {
+	width: 100%;
+	aspect-ratio: 3 / 4;
+	object-fit: cover;
+	object-position: center top;
+	display: block;
+	filter: grayscale(8%);
+}
+
+/* ── About column ── */
+.about {
+	width: 360px;
+	flex-shrink: 0;
+	padding: 0 52px 52px 52px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.aboutTitle {
+	font-size: 11px;
+	font-weight: 300;
+	letter-spacing: 0.3em;
+	color: #ededed;
+	margin-bottom: 14px;
+}
+
+.aboutLine {
+	width: 100%;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.1);
+	margin-bottom: 32px;
+}
+
+.aboutText {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.aboutText p {
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 1.9;
+	color: #888;
+}
