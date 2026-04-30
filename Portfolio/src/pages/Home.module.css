@@ -1,11 +1,20 @@
 .home {
 	display: flex;
+	flex-direction: column;
+}
+
+/* ── Top section ── */
+.topSection {
+	display: flex;
 	min-height: 100vh;
 }
 
 /* ── Hero column ── */
 .hero {
-	flex: 1;
+	/* ↓ verander deze waarde om about me links/rechts te verschuiven */
+	width: 600px;
+	flex: none;
+	overflow: visible;
 	padding: 64px 52px 52px 52px;
 	display: flex;
 	flex-direction: column;
@@ -16,37 +25,38 @@
 }
 
 .name {
-	font-size: clamp(60px, 7.5vw, 108px);
+	font-size: 120px;
 	font-weight: 100;
-	line-height: 0.93;
-	letter-spacing: -0.01em;
-	color: #ededed;
+	line-height: 1;
+	letter-spacing: 0.1em;
+	color: whitesmoke;
 	margin-bottom: 22px;
+	white-space: nowrap;
 }
 
 .role {
-	font-size: 14px;
+	font-size: 20px;
 	font-weight: 300;
-	color: #777;
-	letter-spacing: 0.04em;
+	color: whitesmoke;
+	letter-spacing: 0.1em;
 }
 
 /* ── Contact block ── */
 .contactBlock {
-	margin-top: 48px;
+	margin-top: 10px;
 }
 
 .contactText {
-	font-size: 12px;
+	font-size: 16px;
 	font-weight: 300;
-	color: #555;
+	color: dimgray;
 	margin-bottom: 5px;
 }
 
 .contactEmail {
-	font-size: 13px;
+	font-size: 17px;
 	font-weight: 300;
-	color: #ededed;
+	color: whitesmoke;
 	letter-spacing: 0.02em;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 	padding-bottom: 3px;
@@ -54,46 +64,31 @@
 }
 
 .contactEmail:hover {
-	border-color: #ededed;
-}
-
-/* ── Photo block ── */
-.photoBlock {
-	margin-top: 36px;
-	width: 175px;
-}
-
-.photo {
-	width: 100%;
-	aspect-ratio: 3 / 4;
-	object-fit: cover;
-	object-position: center top;
-	display: block;
-	filter: grayscale(8%);
+	border-color: whitesmoke;
 }
 
 /* ── About column ── */
 .about {
-	width: 360px;
-	flex-shrink: 0;
-	padding: 0 52px 52px 52px;
+	width: 40em;
+	padding: 320px 52px 52px 2px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
+	margin-left: 50px;
 }
 
 .aboutTitle {
-	font-size: 11px;
+	font-size: 20px;
 	font-weight: 300;
 	letter-spacing: 0.3em;
-	color: #ededed;
+	color: whitesmoke;
 	margin-bottom: 14px;
 }
 
 .aboutLine {
 	width: 100%;
 	height: 1px;
-	background: rgba(255, 255, 255, 0.1);
+	background: whitesmoke;
 	margin-bottom: 32px;
 }
 
@@ -104,8 +99,150 @@
 }
 
 .aboutText p {
-	font-size: 13px;
+	font-size: 17px;
 	font-weight: 300;
-	line-height: 1.9;
-	color: #888;
+	line-height: 1.7;
+	color: gray;
+}
+
+/* ── Motivation section ── */
+.motivationSection {
+	display: flex;
+	min-height: 100vh;
+	align-items: flex-start;
+}
+
+.motivationText {
+	flex: 0 0 500px;
+	padding: 80px 22px;
+}
+
+.motivationTitle {
+	font-size: 20px;
+	font-weight: 300;
+	letter-spacing: 0.3em;
+	color: whitesmoke;
+	margin-bottom: 14px;
+}
+
+.motivationLine {
+	width: 100%;
+	height: 1px;
+	background: whitesmoke;
+	margin-bottom: 40px;
+}
+
+.motivationParagraphs {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.motivationParagraphs p {
+	font-size: 17px;
+	font-weight: 300;
+	line-height: 1.7;
+	color: gray;
+}
+
+/* ── Parallax photo ── */
+.photoWrapper {
+	width: 450px;
+	height: 280px;
+	flex-shrink: 0;
+	overflow: hidden;
+	position: relative;
+	margin-top: 80px;
+	margin-left: 150px;
+}
+
+.parallaxPhoto {
+	width: 100%;
+	height: 130%;
+	object-fit: cover;
+	object-position: center;
+	position: absolute;
+	top: -15%;
+	left: 0;
+}
+
+/* ── Skills section ── */
+.skillsSection {
+	padding: 10px 20px 80px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin-top: -200px;
+	padding-bottom: 150px;
+}
+
+.skillsTitle {
+	font-size: 20px;
+	font-weight: 300;
+	letter-spacing: 0.3em;
+	color: whitesmoke;
+	margin-bottom: 14px;
+}
+
+.skillsDivider {
+	width: 95%;
+	height: 1px;
+	background: whitesmoke;
+	margin-bottom: 60px;
+}
+
+.skillsGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 40px;
+}
+
+.skillsColumn {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.columnTitle {
+	font-size: 14px;
+	font-weight: 300;
+	letter-spacing: 0.2em;
+	color: gray;
+}
+
+.pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.pill {
+	font-size: 14px;
+	font-weight: 300;
+	color: whitesmoke;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 50px;
+	padding: 8px 18px;
+}
+
+.skillsLinks {
+	position: absolute;
+	bottom: 40px;
+	right: 92px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 8px;
+}
+
+.skillsLink {
+	font-size: 25px;
+	font-weight: 300;
+	letter-spacing: 0.05em;
+	color: whitesmoke;
+	transition: opacity 0.2s ease;
+}
+
+.skillsLink:hover {
+	opacity: 0.5;
 }

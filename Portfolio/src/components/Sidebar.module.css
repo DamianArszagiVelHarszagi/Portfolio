@@ -1,6 +1,5 @@
 .sidebar {
 	position: fixed;
-	width: 175px;
 	display: flex;
 	flex-direction: column;
 	padding: 72px 52px;
@@ -14,28 +13,27 @@
 .nav {
 	display: flex;
 	flex-direction: column;
-	gap: 2px;
+	gap: 15px;
 	flex: 1;
 }
 
 .link {
-	font-size: 11px;
+	font-size: 14px;
 	font-weight: 300;
-	letter-spacing: 0.2em;
+	letter-spacing: 0.3em;
 	text-transform: uppercase;
-	color: #555;
-	padding: 7px 0;
+	color: gray;
 	transition: color 0.2s ease;
 	border-bottom: 1px solid transparent;
 }
 
 .link:hover {
-	color: #ededed;
+	color: whitesmoke;
 }
 
 .link.active {
-	color: #ededed;
-	border-bottom: 1px solid #ededed;
+	color: white;
+	border-bottom: 1px solid whitesmoke;
 }
 
 .socials {
@@ -46,7 +44,7 @@
 }
 
 .socialLink {
-	color: #555;
+	color: dimgray;
 	transition: color 0.2s ease;
 
 	display: flex;
@@ -54,11 +52,11 @@
 }
 
 .socialLink:hover {
-	color: #ededed;
+	color: whitesmoke;
 }
 
 .copyright {
-	font-size: 10px;
+	font-size: 13px;
 	font-weight: 300;
-	color: #444;
+	color: dimgray;
 }

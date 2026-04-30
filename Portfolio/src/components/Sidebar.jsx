@@ -1,11 +1,28 @@
 import { NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
 import styles from "./Sidebar.module.css";
 
-const NAV_LINKS = [
-	{ to: "/", label: "Home" },
-	{ to: "/works", label: "Works" },
-	{ to: "/contact", label: "Contact" },
-];
+const navContainer = {
+	animate: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+};
+
+const navItem = {
+	initial: { opacity: 0, x: -12 },
+	animate: {
+		opacity: 1,
+		x: 0,
+		transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+	},
+};
+
+const socialsContainer = {
+	animate: { transition: { staggerChildren: 0.07, delayChildren: 0.4 } },
+};
+
+const socialItem = {
+	initial: { opacity: 0 },
+	animate: { opacity: 1, transition: { duration: 0.4 } },
+};
 
 function GitHubIcon() {
 	return (
@@ -43,40 +60,76 @@ export default function Sidebar() {
 	return (
 		<aside className={styles.sidebar}>
 			<div className={styles.navsocials}>
-				<nav className={styles.nav}>
-					{NAV_LINKS.map(({ to, label }) => (
+				<motion.nav
+					className={styles.nav}
+					variants={navContainer}
+					initial="initial"
+					animate="animate"
+				>
+					<motion.div variants={navItem}>
 						<NavLink
-							key={to}
-							to={to}
-							end={to === "/"}
+							to="/"
+							end
 							className={({ isActive }) =>
 								`${styles.link} ${isActive ? styles.active : ""}`
 							}
 						>
-							{label}
+							Home
 						</NavLink>
-					))}
-				</nav>
+					</motion.div>
+					<motion.div variants={navItem}>
+						<NavLink
+							to="/works"
+							className={({ isActive }) =>
+								`${styles.link} ${isActive ? styles.active : ""}`
+							}
+						>
+							Works
+						</NavLink>
+					</motion.div>
+					<motion.div variants={navItem}>
+						<NavLink
+							to="/contact"
+							className={({ isActive }) =>
+								`${styles.link} ${isActive ? styles.active : ""}`
+							}
+						>
+							Contact
+						</NavLink>
+					</motion.div>
+				</motion.nav>
 
-				<div className={styles.socials}>
-					<a
+				<motion.div
+					className={styles.socials}
+					variants={socialsContainer}
+					initial="initial"
+					animate="animate"
+				>
+					<motion.a
 						href="https://github.com/DamianArszagiVelHarszagi"
-						target="_blank"
 						className={styles.socialLink}
+						variants={socialItem}
+						whileHover={{ scale: 1.2, transition: { duration: 0.15 } }}
 					>
 						<GitHubIcon />
-					</a>
-					<a
-						href="www.linkedin.com/in/damian-arszagivelharszagi"
-						target="_blank"
+					</motion.a>
+					<motion.a
+						href="https://linkedin.com/in/damian-arszagivelharszagi"
 						className={styles.socialLink}
+						variants={socialItem}
+						whileHover={{ scale: 1.2, transition: { duration: 0.15 } }}
 					>
 						<LinkedInIcon />
-					</a>
-					<a href="mailto:damian@arszagi.eu" className={styles.socialLink}>
+					</motion.a>
+					<motion.a
+						href="mailto:damian@arszagi.eu"
+						className={styles.socialLink}
+						variants={socialItem}
+						whileHover={{ scale: 1.2, transition: { duration: 0.15 } }}
+					>
 						<MailIcon />
-					</a>
-				</div>
+					</motion.a>
+				</motion.div>
 			</div>
 
 			<p className={styles.copyright}>© Damian Arszagi</p>

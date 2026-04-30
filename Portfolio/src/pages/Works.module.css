@@ -9,19 +9,19 @@
 
 .label {
   display: block;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 300;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #777;
+  color: gray;
   margin-bottom: 14px;
 }
 
 .title {
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(52px, 7vw, 90px);
   font-weight: 100;
   letter-spacing: -0.01em;
-  color: #ededed;
+  color: whitesmoke;
 }
 
 .grid {
@@ -54,15 +54,15 @@
 }
 
 .cardTitle {
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 300;
-  color: #ededed;
+  color: whitesmoke;
 }
 
 .cardTag {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 300;
   letter-spacing: 0.15em;
-  color: #555;
+  color: dimgray;
   text-transform: uppercase;
 }
