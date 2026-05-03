@@ -35,7 +35,7 @@ export default function Home() {
 		offset: ["start end", "end start"],
 	});
 
-	const photoY = useTransform(scrollYProgress, [0, 1], ["80px", "-80px"]);
+	const photoY = useTransform(scrollYProgress, [0, 1], ["35px", "-35px"]);
 
 	return (
 		<div className={styles.home}>
@@ -166,7 +166,7 @@ export default function Home() {
 							<span className={styles.pill}>Photoshop</span>
 							<span className={styles.pill}>Illustrator</span>
 							<span className={styles.pill}>Lightroom</span>
-							<span className={styles.pill}>Indesign</span>
+							<span className={styles.pill}>InDesign</span>
 						</div>
 					</div>
 				</div>

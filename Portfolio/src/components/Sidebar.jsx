@@ -106,24 +106,27 @@ export default function Sidebar() {
 					animate="animate"
 				>
 					<motion.a
-						href="https://github.com/DamianArszagiVelHarszagi"
-						className={styles.socialLink}
-						variants={socialItem}
-						whileHover={{ scale: 1.2, transition: { duration: 0.15 } }}
-					>
-						<GitHubIcon />
-					</motion.a>
-					<motion.a
 						href="https://linkedin.com/in/damian-arszagivelharszagi"
 						className={styles.socialLink}
+						aria-label="LinkedIn"
 						variants={socialItem}
 						whileHover={{ scale: 1.2, transition: { duration: 0.15 } }}
 					>
 						<LinkedInIcon />
 					</motion.a>
 					<motion.a
+						href="https://github.com/DamianArszagiVelHarszagi"
+						className={styles.socialLink}
+						aria-label="GitHub"
+						variants={socialItem}
+						whileHover={{ scale: 1.2, transition: { duration: 0.15 } }}
+					>
+						<GitHubIcon />
+					</motion.a>
+					<motion.a
 						href="mailto:damian@arszagi.eu"
 						className={styles.socialLink}
+						aria-label="Email"
 						variants={socialItem}
 						whileHover={{ scale: 1.2, transition: { duration: 0.15 } }}
 					>

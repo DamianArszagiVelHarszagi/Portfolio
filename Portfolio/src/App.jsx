@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
@@ -8,18 +8,45 @@ import Works from './pages/Works';
 import Contact from './pages/Contact';
 import './App.css';
 
-function App() {
-  const [overlayVisible, setOverlayVisible] = useState(true);
+function SmoothScroll() {
+  const location = useLocation();
+  const lenisRef = useRef(null);
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.08 });
+    lenisRef.current = lenis;
+    let frameId;
+
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      frameId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
+
+    frameId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
   }, []);
+
+  useEffect(() => {
+    const lenis = lenisRef.current;
+
+    if (!lenis) return;
+
+    lenis.scrollTo(0, { immediate: true });
+    requestAnimationFrame(() => {
+      lenis.resize();
+    });
+  }, [location.pathname]);
+
+  return null;
+}
+
+function App() {
+  const [overlayVisible, setOverlayVisible] = useState(true);
 
   return (
     <>
@@ -39,6 +66,7 @@ function App() {
         />
       )}
       <BrowserRouter>
+        <SmoothScroll />
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />

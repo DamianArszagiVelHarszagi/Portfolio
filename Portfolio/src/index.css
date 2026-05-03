@@ -11,12 +11,19 @@ body,
 #root {
 	height: 100%;
 	scroll-behavior: smooth;
+	scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+	display: none;
 }
 
 body {
 	background: #181818;
 	color: whitesmoke;
-	font-family: "Manrope", system-ui, sans-serif;
+	font-family:
+		"Font Awesome 7 Free", "Font Awesome 7 Brands", system-ui, sans-serif;
 }
 
 a {

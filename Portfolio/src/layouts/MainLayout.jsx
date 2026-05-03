@@ -26,17 +26,11 @@ export default function MainLayout() {
 				{overlayVisible && (
 					<motion.div
 						key={overlayKey}
+						className={styles.pageOverlay}
 						initial={{ opacity: 1 }}
 						animate={{ opacity: 0 }}
 						transition={{ duration: 0.8, ease: 'easeInOut' }}
 						onAnimationComplete={() => setOverlayVisible(false)}
-						style={{
-							position: 'fixed',
-							inset: 0,
-							background: 'black',
-							zIndex: 9998,
-							pointerEvents: 'none',
-						}}
 					/>
 				)}
 				<Outlet />

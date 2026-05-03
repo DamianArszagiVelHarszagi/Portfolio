@@ -1,4 +1,6 @@
 .home {
+	--page-gutter: clamp(52px, 5vw, 112px);
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 }
@@ -7,15 +9,17 @@
 .topSection {
 	display: flex;
 	min-height: 100vh;
+	justify-content: space-between;
+	gap: clamp(28px, 4vw, 110px);
 }
 
 /* ── Hero column ── */
 .hero {
 	/* ↓ verander deze waarde om about me links/rechts te verschuiven */
-	width: 600px;
-	flex: none;
+	width: clamp(520px, 35vw, 760px);
+	flex: 0 0 auto;
 	overflow: visible;
-	padding: 64px 52px 52px 52px;
+	padding: 64px var(--page-gutter) 52px var(--page-gutter);
 	display: flex;
 	flex-direction: column;
 }
@@ -25,8 +29,8 @@
 }
 
 .name {
-	font-size: 120px;
-	font-weight: 100;
+	font-size: clamp(88px, calc(6.9vw + 2px), 156px);
+	font-weight: 300;
 	line-height: 1;
 	letter-spacing: 0.1em;
 	color: whitesmoke;
@@ -35,8 +39,8 @@
 }
 
 .role {
-	font-size: 20px;
-	font-weight: 300;
+	font-size: 22px;
+	font-weight: 400;
 	color: whitesmoke;
 	letter-spacing: 0.1em;
 }
@@ -47,15 +51,15 @@
 }
 
 .contactText {
-	font-size: 16px;
-	font-weight: 300;
+	font-size: 18px;
+	font-weight: 400;
 	color: dimgray;
 	margin-bottom: 5px;
 }
 
 .contactEmail {
-	font-size: 17px;
-	font-weight: 300;
+	font-size: 19px;
+	font-weight: 400;
 	color: whitesmoke;
 	letter-spacing: 0.02em;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.12);
@@ -69,17 +73,17 @@
 
 /* ── About column ── */
 .about {
-	width: 40em;
-	padding: 320px 52px 52px 2px;
+	width: clamp(40em, 38vw, 760px);
+	padding: clamp(300px, 18vw, 360px) var(--page-gutter) 52px 2px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	margin-left: 50px;
+	margin-left: 0;
 }
 
 .aboutTitle {
-	font-size: 20px;
-	font-weight: 300;
+	font-size: 22px;
+	font-weight: 400;
 	letter-spacing: 0.3em;
 	color: whitesmoke;
 	margin-bottom: 14px;
@@ -99,8 +103,8 @@
 }
 
 .aboutText p {
-	font-size: 17px;
-	font-weight: 300;
+	font-size: 19px;
+	font-weight: 400;
 	line-height: 1.7;
 	color: gray;
 }
@@ -110,16 +114,18 @@
 	display: flex;
 	min-height: 100vh;
 	align-items: flex-start;
+	justify-content: space-between;
+	gap: clamp(48px, 8vw, 220px);
 }
 
 .motivationText {
-	flex: 0 0 500px;
-	padding: 80px 22px;
+	flex: 0 0 clamp(500px, 32vw, 660px);
+	padding: 80px 22px 80px var(--page-gutter);
 }
 
 .motivationTitle {
-	font-size: 20px;
-	font-weight: 300;
+	font-size: 22px;
+	font-weight: 400;
 	letter-spacing: 0.3em;
 	color: whitesmoke;
 	margin-bottom: 14px;
@@ -139,36 +145,37 @@
 }
 
 .motivationParagraphs p {
-	font-size: 17px;
-	font-weight: 300;
+	font-size: 19px;
+	font-weight: 400;
 	line-height: 1.7;
 	color: gray;
 }
 
 /* ── Parallax photo ── */
 .photoWrapper {
-	width: 450px;
-	height: 280px;
+	width: clamp(450px, 38vw, 760px);
+	height: clamp(280px, 18vw, 390px);
 	flex-shrink: 0;
 	overflow: hidden;
 	position: relative;
 	margin-top: 80px;
-	margin-left: 150px;
+	margin-left: 0;
+	margin-right: var(--page-gutter);
 }
 
 .parallaxPhoto {
 	width: 100%;
-	height: 130%;
+	height: 150%;
 	object-fit: cover;
-	object-position: center;
+	object-position: center -50%;
 	position: absolute;
-	top: -15%;
+	top: -50%;
 	left: 0;
 }
 
 /* ── Skills section ── */
 .skillsSection {
-	padding: 10px 20px 80px;
+	padding: 10px var(--page-gutter) 80px;
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -177,15 +184,15 @@
 }
 
 .skillsTitle {
-	font-size: 20px;
-	font-weight: 300;
+	font-size: 22px;
+	font-weight: 400;
 	letter-spacing: 0.3em;
 	color: whitesmoke;
 	margin-bottom: 14px;
 }
 
 .skillsDivider {
-	width: 95%;
+	width: 100%;
 	height: 1px;
 	background: whitesmoke;
 	margin-bottom: 60px;
@@ -204,8 +211,8 @@
 }
 
 .columnTitle {
-	font-size: 14px;
-	font-weight: 300;
+	font-size: 16px;
+	font-weight: 400;
 	letter-spacing: 0.2em;
 	color: gray;
 }
@@ -217,18 +224,35 @@
 }
 
 .pill {
-	font-size: 14px;
-	font-weight: 300;
+	display: inline-flex;
+	align-items: center;
+	font-size: 17px;
+	font-weight: 400;
 	color: whitesmoke;
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 50px;
-	padding: 8px 18px;
+	padding: 10px 21px;
+	cursor: default;
+	user-select: none;
+	transform: translateY(0);
+	transition:
+		background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pill:hover {
+	background-color: whitesmoke;
+	border-color: whitesmoke;
+	color: #181818;
+	transform: translateY(-2px);
 }
 
 .skillsLinks {
 	position: absolute;
 	bottom: 40px;
-	right: 92px;
+	right: var(--page-gutter);
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
@@ -236,8 +260,8 @@
 }
 
 .skillsLink {
-	font-size: 25px;
-	font-weight: 300;
+	font-size: 27px;
+	font-weight: 400;
 	letter-spacing: 0.05em;
 	color: whitesmoke;
 	transition: opacity 0.2s ease;
@@ -245,4 +269,159 @@
 
 .skillsLink:hover {
 	opacity: 0.5;
+}
+
+@media (min-width: 1741px) {
+	.hero {
+		padding-left: var(--page-gutter);
+	}
+
+	.name {
+		font-size: clamp(134px, calc(6.4vw + 2px), 172px);
+	}
+
+	.role {
+		font-size: clamp(22px, calc(1.05vw + 2px), 27px);
+	}
+
+	.aboutTitle,
+	.motivationTitle,
+	.skillsTitle {
+		font-size: clamp(22px, calc(1.05vw + 2px), 27px);
+	}
+
+	.aboutText p,
+	.motivationParagraphs p {
+		font-size: clamp(19px, calc(0.92vw + 2px), 24px);
+	}
+
+	.contactText {
+		font-size: clamp(18px, calc(0.86vw + 2px), 22px);
+	}
+
+	.contactEmail {
+		font-size: clamp(19px, calc(0.9vw + 2px), 23px);
+	}
+}
+
+@media (max-width: 1280px) {
+	.hero {
+		width: clamp(430px, 42vw, 520px);
+		padding-right: 32px;
+	}
+
+	.about {
+		width: min(40em, 100%);
+		padding-top: 300px;
+		padding-right: 42px;
+	}
+
+	.name {
+		font-size: clamp(76px, calc(7.4vw + 2px), 98px);
+	}
+}
+
+@media (max-width: 980px) {
+	.home {
+		--page-gutter: 32px;
+	}
+
+	.topSection,
+	.motivationSection {
+		flex-direction: column;
+		min-height: auto;
+		gap: 0;
+	}
+
+	.hero {
+		width: 100%;
+		min-height: 78vh;
+		padding: 96px var(--page-gutter) 44px;
+	}
+
+	.name {
+		font-size: clamp(56px, calc(12vw + 2px), 94px);
+		white-space: normal;
+	}
+
+	.about {
+		width: 100%;
+		padding: 32px var(--page-gutter) 72px;
+	}
+
+	.motivationText {
+		flex: none;
+		width: 100%;
+		padding: 72px var(--page-gutter) 40px;
+	}
+
+	.photoWrapper {
+		width: calc(100% - 64px);
+		height: auto;
+		aspect-ratio: 16 / 10;
+		margin: 0 32px 72px;
+		margin-right: 32px;
+	}
+
+	.skillsSection {
+		margin-top: 0;
+		padding: 0 32px 128px;
+	}
+
+	.skillsGrid {
+		grid-template-columns: 1fr;
+		gap: 34px;
+	}
+
+	.skillsDivider {
+		width: 100%;
+		margin-bottom: 42px;
+	}
+
+	.skillsLinks {
+		right: var(--page-gutter);
+	}
+}
+
+@media (max-width: 560px) {
+	.home {
+		--page-gutter: 22px;
+	}
+
+	.hero {
+		min-height: 70vh;
+		padding: 92px var(--page-gutter) 36px;
+	}
+
+	.name {
+		font-size: clamp(42px, calc(14vw + 2px), 64px);
+		letter-spacing: 0.08em;
+	}
+
+	.role {
+		font-size: 19px;
+	}
+
+	.about,
+	.motivationText {
+		padding-left: 22px;
+		padding-right: 22px;
+	}
+
+	.photoWrapper {
+		width: calc(100% - 44px);
+		margin-left: 22px;
+		margin-right: 22px;
+	}
+
+	.skillsSection {
+		padding-left: 22px;
+		padding-right: 22px;
+	}
+
+	.skillsLinks {
+		left: var(--page-gutter);
+		right: auto;
+		align-items: flex-start;
+	}
 }

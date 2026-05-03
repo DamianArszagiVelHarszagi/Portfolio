@@ -1,0 +1,23 @@
+.gallery {
+	min-height: 100vh;
+	padding: 64px 52px;
+	background: #181818;
+	color: whitesmoke;
+}
+
+.label {
+	display: block;
+	font-size: 15px;
+	font-weight: 400;
+	letter-spacing: 0.35em;
+	text-transform: uppercase;
+	color: gray;
+	margin-bottom: 14px;
+}
+
+.title {
+	font-size: clamp(54px, calc(7vw + 2px), 92px);
+	font-weight: 400;
+	letter-spacing: -0.01em;
+	color: whitesmoke;
+}

@@ -8,3 +8,28 @@
   margin-left: 175px;
   overflow-x: hidden;
 }
+
+.pageOverlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 175px;
+  z-index: 9998;
+  background: #181818;
+  pointer-events: none;
+}
+
+@media (max-width: 820px) {
+  .layout {
+    display: block;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .pageOverlay {
+    left: 0;
+  }
+}
