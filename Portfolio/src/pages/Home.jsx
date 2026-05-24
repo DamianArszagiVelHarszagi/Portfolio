@@ -140,9 +140,13 @@ export default function Home() {
 						<div className={styles.pills}>
 							<span className={styles.pill}>React.js</span>
 							<span className={styles.pill}>Javascript</span>
+							<span className={styles.pill}>HTML</span>
+							<span className={styles.pill}>CSS</span>
+							<span className={styles.pill}>Bootstrap</span>
 							<span className={styles.pill}>Motion</span>
 							<span className={styles.pill}>Tailwind CSS</span>
 							<span className={styles.pill}>Typescript</span>
+								<span className={styles.pill}>Vue.js</span>
 						</div>
 					</div>
 
@@ -150,6 +154,8 @@ export default function Home() {
 						<p className={styles.columnTitle}>BACKEND</p>
 						<div className={styles.pills}>
 							<span className={styles.pill}>Node.js</span>
+							<span className={styles.pill}>Kotlin</span>
+							<span className={styles.pill}>Express.js</span>
 							<span className={styles.pill}>Laravel</span>
 							<span className={styles.pill}>PHP</span>
 							<span className={styles.pill}>SQL</span>

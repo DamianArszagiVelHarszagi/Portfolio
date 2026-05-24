@@ -7,6 +7,8 @@
   flex: 1;
   margin-left: 175px;
   overflow-x: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .pageOverlay {

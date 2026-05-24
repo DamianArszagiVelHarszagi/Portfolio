@@ -6,6 +6,7 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import Works from './pages/Works';
 import Contact from './pages/Contact';
+import SplashCursor from './components/SplashCursor';
 import './App.css';
 
 function SmoothScroll() {
@@ -50,6 +51,7 @@ function App() {
 
   return (
     <>
+      <SplashCursor />
       {overlayVisible && (
         <motion.div
           initial={{ opacity: 1 }}
