@@ -5,180 +5,121 @@ import polskaSzkolaOverview from "../assets/works/polska-szkola-overview.png";
 import recyclageAppOverview from "../assets/works/recyclage-app-overview.png";
 import wasteWatchOverview from "../assets/works/waste-watch-overview.png";
 
-function getProject(projectNumber) {
-	switch (projectNumber) {
-		case 2:
-			return {
-				counter: "02",
-				title: "Polish Insitute in Brussels",
-				category: "Client Work / Front End",
-				description:
-					"Full redesign of the old website for the Polish Institute Brussels, starting with a Figma design and later developed into a website after consultations.",
-				tools: ["Javascript", "Html | css", "Figma", "Photoshop"],
-			};
-		case 3:
-			return {
-				counter: "03",
-				title: "Recycle App",
-				category: "Personal project / Front End",
-				description:
-					"Recycling app that provides information about waste collection schedules and offers simple advice on how to sort waste correctly.",
-				tools: ["React.js", "Typescript"],
-			};
-		case 4:
-			return {
-				counter: "04",
-				title: "Waste Watch",
-				category: "Groups project / Full Stack",
-				description:
-					"WasteWatch is an app that helps users track and understand their waste habits, providing insights and simple tips to reduce waste.",
-				tools: [
-					"Javascript",
-					"Node.js",
-					"Figma",
-					"Photoshop",
-					"Illustrator",
-					"Html | css",
-				],
-			};
-		default:
-			return {
-				counter: "01",
-				title: "Cali Brussels",
-				category: "Course Project / Full Stack",
-				description:
-					"Cali Brussels is a web platform that shows calisthenics parks in Brussels on an interactive map. Users can search for parks, filter by location or equipment, and view or add reviews.",
-				tools: ["Figma", "Illustrator", "Javascript", "Node.js", "Html | css"],
-			};
-	}
-}
+const PROJECTS = [
+	{
+		counter: "01",
+		title: "Cali Brussels",
+		category: "Course Project / Full Stack",
+		description:
+			"Cali Brussels is a web platform that shows calisthenics parks in Brussels on an interactive map. Users can search for parks, filter by location or equipment, and view or add reviews.",
+		tools: ["Figma", "Illustrator", "Javascript", "Node.js", "Html | css"],
+		image: callistenicsAppOverview,
+		alt: "Cali Brussels app overview",
+	},
+	{
+		counter: "02",
+		title: "Polish Institute in Brussels",
+		category: "Client Work / Front End",
+		description:
+			"Full redesign of the old website for the Polish Institute Brussels, starting with a Figma design and later developed into a website after consultations.",
+		tools: ["Javascript", "Html | css", "Figma", "Photoshop"],
+		image: polskaSzkolaOverview,
+		alt: "Polska szkola website overview",
+	},
+	{
+		counter: "03",
+		title: "Recycle App",
+		category: "Personal project / Front End",
+		description:
+			"Recycling app that provides information about waste collection schedules and offers simple advice on how to sort waste correctly.",
+		tools: ["React.js", "Typescript"],
+		image: recyclageAppOverview,
+		alt: "Recyclage App overview",
+	},
+	{
+		counter: "04",
+		title: "Waste Watch",
+		category: "Groups project / Full Stack",
+		description:
+			"WasteWatch is an app that helps users track and understand their waste habits, providing insights and simple tips to reduce waste.",
+		tools: ["Javascript", "Node.js", "Figma", "Photoshop", "Illustrator", "Html | css"],
+		image: wasteWatchOverview,
+		alt: "Waste Watch app overview",
+	},
+];
 
 export default function Works() {
-	const [activeProject, setActiveProject] = useState(1);
+	const [activeIndex, setActiveIndex] = useState(0);
 	const [isChanging, setIsChanging] = useState(false);
 
-	const projectOneRef = useRef(null);
-	const projectTwoRef = useRef(null);
-	const projectThreeRef = useRef(null);
-	const projectFourRef = useRef(null);
-	const activeProjectRef = useRef(1);
+	const sectionRefs = useRef([]);
+	const activeIndexRef = useRef(0);
 	const fadeTimeoutRef = useRef(null);
 	const frameRef = useRef(null);
 
 	useEffect(() => {
-		function changeProject(projectNumber) {
-			if (activeProjectRef.current === projectNumber) return;
+		function changeActive(index) {
+			if (activeIndexRef.current === index) return;
 
-			window.clearTimeout(fadeTimeoutRef.current);
-			activeProjectRef.current = projectNumber;
+			clearTimeout(fadeTimeoutRef.current);
+			activeIndexRef.current = index;
 			setIsChanging(true);
 
-			fadeTimeoutRef.current = window.setTimeout(() => {
-				setActiveProject(projectNumber);
+			fadeTimeoutRef.current = setTimeout(() => {
+				setActiveIndex(index);
 				setIsChanging(false);
 			}, 180);
 		}
 
-		function updateActiveProject() {
-			const projectRefs = [
-				projectOneRef,
-				projectTwoRef,
-				projectThreeRef,
-				projectFourRef,
-			];
+		function findClosestSection() {
 			const viewportCenter = window.innerHeight / 2;
-			let closestProject = activeProjectRef.current;
-			let closestDistance = Number.POSITIVE_INFINITY;
+			let closestIndex = activeIndexRef.current;
+			let closestDistance = Infinity;
 
-			projectRefs.forEach((projectRef, index) => {
-				if (!projectRef.current) return;
-
-				const rect = projectRef.current.getBoundingClientRect();
-				const projectCenter = rect.top + rect.height / 2;
-				const distance = Math.abs(projectCenter - viewportCenter);
+			sectionRefs.current.forEach((el, i) => {
+				if (!el) return;
+				const rect = el.getBoundingClientRect();
+				const distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
 
 				if (distance < closestDistance) {
 					closestDistance = distance;
-					closestProject = index + 1;
+					closestIndex = i;
 				}
 			});
 
-			changeProject(closestProject);
+			changeActive(closestIndex);
 		}
 
-		function watchActiveProject() {
-			updateActiveProject();
-			frameRef.current = window.requestAnimationFrame(watchActiveProject);
+		function loop() {
+			findClosestSection();
+			frameRef.current = requestAnimationFrame(loop);
 		}
 
-		frameRef.current = window.requestAnimationFrame(watchActiveProject);
+		frameRef.current = requestAnimationFrame(loop);
 
 		return () => {
-			if (frameRef.current) window.cancelAnimationFrame(frameRef.current);
-			window.clearTimeout(fadeTimeoutRef.current);
+			cancelAnimationFrame(frameRef.current);
+			clearTimeout(fadeTimeoutRef.current);
 		};
 	}, []);
 
-	const project = getProject(activeProject);
+	const project = PROJECTS[activeIndex];
+	const isLastProject = activeIndex === PROJECTS.length - 1;
 
 	return (
 		<section className={styles.works}>
 			<div className={styles.mediaRail}>
-				<article
-					className={styles.projectSection}
-					data-project="1"
-					ref={projectOneRef}
-				>
-					<div className={styles.projectImage}>
-						<img
-							src={callistenicsAppOverview}
-							alt="Cali Brussels app overview"
-							className={styles.projectPhoto}
-						/>
-					</div>
-				</article>
-
-				<article
-					className={styles.projectSection}
-					data-project="2"
-					ref={projectTwoRef}
-				>
-					<div className={styles.projectImage}>
-						<img
-							src={polskaSzkolaOverview}
-							alt="Polska szkola website overview"
-							className={styles.projectPhoto}
-						/>
-					</div>
-				</article>
-
-				<article
-					className={styles.projectSection}
-					data-project="3"
-					ref={projectThreeRef}
-				>
-					<div className={styles.projectImage}>
-						<img
-							src={recyclageAppOverview}
-							alt="Recyclage App overview"
-							className={styles.projectPhoto}
-						/>
-					</div>
-				</article>
-
-				<article
-					className={styles.projectSection}
-					data-project="4"
-					ref={projectFourRef}
-				>
-					<div className={styles.projectImage}>
-						<img
-							src={wasteWatchOverview}
-							alt="Waste Watch app overview"
-							className={styles.projectPhoto}
-						/>
-					</div>
-				</article>
+				{PROJECTS.map((p, i) => (
+					<article
+						key={p.counter}
+						className={styles.projectSection}
+						ref={(el) => (sectionRefs.current[i] = el)}
+					>
+						<div className={styles.projectImage}>
+							<img src={p.image} alt={p.alt} className={styles.projectPhoto} />
+						</div>
+					</article>
+				))}
 			</div>
 
 			<aside className={styles.projectInfo}>
@@ -188,9 +129,7 @@ export default function Works() {
 				</div>
 
 				<div
-					className={`${styles.infoBody} ${
-						activeProject === 4 ? styles.lastProjectInfo : ""
-					} ${isChanging ? styles.isChanging : ""}`}
+					className={`${styles.infoBody} ${isLastProject ? styles.lastProjectInfo : ""} ${isChanging ? styles.isChanging : ""}`}
 				>
 					<p className={styles.counter}>[ {project.counter} / 04 ]</p>
 					<h1>{project.title}</h1>
@@ -203,7 +142,7 @@ export default function Works() {
 							</span>
 						))}
 					</div>
-					{activeProject === 4 && (
+					{isLastProject && (
 						<div className={styles.quickLinks}>
 							<a href="/" className={styles.quickLink}>
 								HOME →

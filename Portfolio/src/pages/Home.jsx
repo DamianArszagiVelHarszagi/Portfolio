@@ -18,7 +18,7 @@ const letterVariant = {
 	},
 };
 
-const fadeUpABoutme = {
+const fadeUp = {
 	initial: { opacity: 0, y: 22 },
 	animate: {
 		opacity: 1,
@@ -84,7 +84,7 @@ export default function Home() {
 
 				<motion.div
 					className={styles.about}
-					variants={fadeUpABoutme}
+					variants={fadeUp}
 					initial="initial"
 					animate="animate"
 				>

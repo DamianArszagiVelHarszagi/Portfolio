@@ -20,7 +20,6 @@ export default function SplashCursor({
 	CURL = 2,
 	SPLAT_RADIUS = 0.04,
 	SPLAT_FORCE = 1000,
-	SHADING = true,
 	OPACITY = 0.4,
 }) {
 	const canvasRef = useRef(null);

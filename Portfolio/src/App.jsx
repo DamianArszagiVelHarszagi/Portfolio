@@ -54,17 +54,11 @@ function App() {
       <SplashCursor />
       {overlayVisible && (
         <motion.div
+          className="appOverlay"
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: 'easeInOut' }}
           onAnimationComplete={() => setOverlayVisible(false)}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'black',
-            zIndex: 9999,
-            pointerEvents: 'none',
-          }}
         />
       )}
       <BrowserRouter>

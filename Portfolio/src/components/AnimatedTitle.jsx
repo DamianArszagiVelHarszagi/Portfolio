@@ -29,7 +29,7 @@ export default function AnimatedTitle({ text, className }) {
 					variants={letterVariant}
 					style={{ display: "inline-block" }}
 				>
-					{letter === " " ? " " : letter}
+					{letter}
 				</motion.span>
 			))}
 		</motion.h1>
