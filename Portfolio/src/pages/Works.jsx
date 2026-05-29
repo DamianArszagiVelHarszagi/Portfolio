@@ -1,13 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Works.module.css";
+import rollerCoasterManager from "../assets/works/roller-coaster-manager.png";
 import callistenicsAppOverview from "../assets/works/callistenics-app-overview.png";
 import polskaSzkolaOverview from "../assets/works/polska-szkola-overview.png";
+import hiddenShanghaiOverview from "../assets/works/hidden-shanghai.png";
 import recyclageAppOverview from "../assets/works/recyclage-app-overview.png";
 import wasteWatchOverview from "../assets/works/waste-watch-overview.png";
 
 const PROJECTS = [
 	{
 		counter: "01",
+		title: "Roller Coaster Manager",
+		category: "Course Project / Full Stack",
+		description:
+			"A management app for Walibi roller coasters. View all attractions, sort them by category, and log breakdowns to keep operations running smoothly.",
+		tools: ["Vue.js", "Kotlin", "Spring Boot"],
+		image: rollerCoasterManager,
+		alt: "Roller Coaster Manager app overview",
+	},
+	{
+		counter: "02",
 		title: "Cali Brussels",
 		category: "Course Project / Full Stack",
 		description:
@@ -17,7 +29,7 @@ const PROJECTS = [
 		alt: "Cali Brussels app overview",
 	},
 	{
-		counter: "02",
+		counter: "03",
 		title: "Polish Institute in Brussels",
 		category: "Client Work / Front End",
 		description:
@@ -27,7 +39,17 @@ const PROJECTS = [
 		alt: "Polska szkola website overview",
 	},
 	{
-		counter: "03",
+		counter: "04",
+		title: "Hidden Shanghai",
+		category: "Course Project / Back End",
+		description:
+			"A backend application that uncovers hidden gems and lesser-known locations across Shanghai, serving location data and user-submitted spots through a Laravel API.",
+		tools: ["Laravel", "PHP"],
+		image: hiddenShanghaiOverview,
+		alt: "Hidden Shanghai app overview",
+	},
+	{
+		counter: "05",
 		title: "Recycle App",
 		category: "Personal project / Front End",
 		description:
@@ -37,7 +59,7 @@ const PROJECTS = [
 		alt: "Recyclage App overview",
 	},
 	{
-		counter: "04",
+		counter: "06",
 		title: "Waste Watch",
 		category: "Groups project / Full Stack",
 		description:
@@ -131,7 +153,7 @@ export default function Works() {
 				<div
 					className={`${styles.infoBody} ${isLastProject ? styles.lastProjectInfo : ""} ${isChanging ? styles.isChanging : ""}`}
 				>
-					<p className={styles.counter}>[ {project.counter} / 04 ]</p>
+					<p className={styles.counter}>[ {project.counter} / 06 ]</p>
 					<h1>{project.title}</h1>
 					<p className={styles.category}>{project.category}</p>
 					<p className={styles.description}>{project.description}</p>

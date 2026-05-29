@@ -155,6 +155,7 @@ export default function Home() {
 						<div className={styles.pills}>
 							<span className={styles.pill}>Node.js</span>
 							<span className={styles.pill}>Kotlin</span>
+							<span className={styles.pill}>Spring Boot</span>
 							<span className={styles.pill}>Express.js</span>
 							<span className={styles.pill}>Laravel</span>
 							<span className={styles.pill}>PHP</span>
