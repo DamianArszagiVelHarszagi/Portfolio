@@ -1,8 +1,9 @@
 .contact {
+  --page-gutter: clamp(52px, 5vw, 112px);
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding: 64px 52px;
+  align-items: flex-start;
+  padding: 64px var(--page-gutter) 52px;
 }
 
 .content {
@@ -143,10 +144,15 @@
   transform: translateX(8px);
 }
 
+@media (max-width: 980px) {
+  .contact {
+    --page-gutter: 32px;
+  }
+}
+
 @media (max-width: 720px) {
   .contact {
-    align-items: flex-start;
-    padding: 112px 22px 64px;
+    padding: 112px var(--page-gutter) 64px;
   }
 
   .details {
@@ -155,5 +161,11 @@
 
   .socialLinks {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact {
+    --page-gutter: 22px;
   }
 }

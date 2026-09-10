@@ -39,7 +39,6 @@ export default function Home() {
 
 	return (
 		<div className={styles.home}>
-			{/* ── Top section ── */}
 			<div className={styles.topSection}>
 				<div className={styles.hero}>
 					<div className={styles.nameBlock}>
@@ -103,8 +102,6 @@ export default function Home() {
 					</div>
 				</motion.div>
 			</div>
-
-			{/* ── Motivation section ── */}
 			<div className={styles.motivationSection}>
 				<div className={styles.motivationText}>
 					<h2 className={styles.motivationTitle}>MOTIVATION</h2>
@@ -123,13 +120,14 @@ export default function Home() {
 				<div className={styles.photoWrapper} ref={sectionRef}>
 					<motion.img
 						src={photo}
+						alt="Damian Arszagi"
 						className={styles.parallaxPhoto}
+						decoding="async"
+						fetchPriority="high"
 						style={{ y: photoY }}
 					/>
 				</div>
 			</div>
-
-			{/* ── Skills section ── */}
 			<div className={styles.skillsSection}>
 				<h2 className={styles.skillsTitle}>SKILLS</h2>
 				<div className={styles.skillsDivider} />
@@ -146,7 +144,7 @@ export default function Home() {
 							<span className={styles.pill}>Motion</span>
 							<span className={styles.pill}>Tailwind CSS</span>
 							<span className={styles.pill}>Typescript</span>
-								<span className={styles.pill}>Vue.js</span>
+							<span className={styles.pill}>Vue.js</span>
 						</div>
 					</div>
 
@@ -180,13 +178,14 @@ export default function Home() {
 
 				<div className={styles.skillsLinks}>
 					<a href="/works" className={styles.skillsLink}>
-						WORKS →
+						WORKS {"\u2192"}
 					</a>
 					<a href="/contact" className={styles.skillsLink}>
-						CONTACT →
+						CONTACT {"\u2192"}
 					</a>
 				</div>
 			</div>
 		</div>
 	);
 }
+

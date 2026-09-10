@@ -1,32 +1,29 @@
-import { useState, useEffect, useRef } from 'react';
-import Lenis from 'lenis';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import MainLayout from './layouts/MainLayout';
-import Home from './pages/Home';
-import Works from './pages/Works';
-import Contact from './pages/Contact';
-import SplashCursor from './components/SplashCursor';
-import './App.css';
+import { useEffect, useRef } from "react";
+import Lenis from "lenis";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home";
+import Works from "./pages/Works";
+import Contact from "./pages/Contact";
+import SplashCursor from "./components/SplashCursor";
+import "./App.css";
 
 function SmoothScroll() {
   const location = useLocation();
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.08 });
+    const lenis = new Lenis({
+      anchors: true,
+      autoRaf: true,
+      lerp: 0.055,
+      smoothWheel: true,
+      touchMultiplier: 1.15,
+      wheelMultiplier: 0.82,
+    });
     lenisRef.current = lenis;
-    let frameId;
-
-    function raf(time) {
-      lenis.raf(time);
-      frameId = requestAnimationFrame(raf);
-    }
-
-    frameId = requestAnimationFrame(raf);
 
     return () => {
-      cancelAnimationFrame(frameId);
       lenis.destroy();
       lenisRef.current = null;
     };
@@ -47,20 +44,9 @@ function SmoothScroll() {
 }
 
 function App() {
-  const [overlayVisible, setOverlayVisible] = useState(true);
-
   return (
     <>
       <SplashCursor />
-      {overlayVisible && (
-        <motion.div
-          className="appOverlay"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
-          transition={{ duration: 1, delay: 0.1, ease: 'easeInOut' }}
-          onAnimationComplete={() => setOverlayVisible(false)}
-        />
-      )}
       <BrowserRouter>
         <SmoothScroll />
         <Routes>

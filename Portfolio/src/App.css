@@ -1,7 +1,0 @@
-.appOverlay {
-  position: fixed;
-  inset: 0;
-  background: black;
-  z-index: 9999;
-  pointer-events: none;
-}

@@ -135,7 +135,8 @@ export default function Sidebar() {
 				</motion.div>
 			</div>
 
-			<p className={styles.copyright}>© Damian Arszagi</p>
+			<p className={styles.copyright}>{"\u00a9"} Damian Arszagi</p>
 		</aside>
 	);
 }
+

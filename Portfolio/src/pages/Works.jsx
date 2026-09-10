@@ -120,7 +120,9 @@ export default function Works() {
 		frameRef.current = requestAnimationFrame(loop);
 
 		return () => {
-			cancelAnimationFrame(frameRef.current);
+			if (frameRef.current !== null) {
+				cancelAnimationFrame(frameRef.current);
+			}
 			clearTimeout(fadeTimeoutRef.current);
 		};
 	}, []);
@@ -138,7 +140,14 @@ export default function Works() {
 						ref={(el) => (sectionRefs.current[i] = el)}
 					>
 						<div className={styles.projectImage}>
-							<img src={p.image} alt={p.alt} className={styles.projectPhoto} />
+							<img
+								src={p.image}
+								alt={p.alt}
+								className={styles.projectPhoto}
+								loading={i === 0 ? "eager" : "lazy"}
+								decoding="async"
+								fetchPriority={i === 0 ? "high" : "auto"}
+							/>
 						</div>
 					</article>
 				))}
@@ -167,10 +176,10 @@ export default function Works() {
 					{isLastProject && (
 						<div className={styles.quickLinks}>
 							<a href="/" className={styles.quickLink}>
-								HOME →
+								HOME {"\u2192"}
 							</a>
 							<a href="/contact" className={styles.quickLink}>
-								CONTACT →
+								CONTACT {"\u2192"}
 							</a>
 						</div>
 					)}
