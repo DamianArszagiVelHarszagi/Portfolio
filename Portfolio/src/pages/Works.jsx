@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "./Works.module.css";
 import rollerCoasterManager from "../assets/works/roller-coaster-manager.png";
 import callistenicsAppOverview from "../assets/works/callistenics-app-overview.png";
@@ -12,6 +13,7 @@ const PROJECTS = [
 		counter: "01",
 		title: "Roller Coaster Manager",
 		category: "Course Project / Full Stack",
+		type: "fullStack",
 		description:
 			"A management app for Walibi roller coasters. View all attractions, sort them by category, and log breakdowns to keep operations running smoothly.",
 		tools: ["Vue.js", "Kotlin", "Spring Boot"],
@@ -22,6 +24,7 @@ const PROJECTS = [
 		counter: "02",
 		title: "Cali Brussels",
 		category: "Course Project / Full Stack",
+		type: "fullStack",
 		description:
 			"Cali Brussels is a web platform that shows calisthenics parks in Brussels on an interactive map. Users can search for parks, filter by location or equipment, and view or add reviews.",
 		tools: ["Figma", "Illustrator", "Javascript", "Node.js", "Html | css"],
@@ -32,6 +35,7 @@ const PROJECTS = [
 		counter: "03",
 		title: "Polish Institute in Brussels",
 		category: "Client Work / Front End",
+		type: "frontEnd",
 		description:
 			"Full redesign of the old website for the Polish Institute Brussels, starting with a Figma design and later developed into a website after consultations.",
 		tools: ["Javascript", "Html | css", "Figma", "Photoshop"],
@@ -42,6 +46,7 @@ const PROJECTS = [
 		counter: "04",
 		title: "Hidden Shanghai",
 		category: "Course Project / Back End",
+		type: "backEnd",
 		description:
 			"A backend application that uncovers hidden gems and lesser-known locations across Shanghai, serving location data and user-submitted spots through a Laravel API.",
 		tools: ["Laravel", "PHP"],
@@ -52,6 +57,7 @@ const PROJECTS = [
 		counter: "05",
 		title: "Recycle App",
 		category: "Personal project / Front End",
+		type: "frontEnd",
 		description:
 			"Recycling app that provides information about waste collection schedules and offers simple advice on how to sort waste correctly.",
 		tools: ["React.js", "Typescript"],
@@ -62,6 +68,7 @@ const PROJECTS = [
 		counter: "06",
 		title: "Waste Watch",
 		category: "Groups project / Full Stack",
+		type: "fullStack",
 		description:
 			"WasteWatch is an app that helps users track and understand their waste habits, providing insights and simple tips to reduce waste.",
 		tools: ["Javascript", "Node.js", "Figma", "Photoshop", "Illustrator", "Html | css"],
@@ -70,7 +77,25 @@ const PROJECTS = [
 	},
 ];
 
-export default function Works() {
+const TECHNOLOGY_GROUPS = [
+	{
+		key: "fullStack",
+		label: "Full Stack",
+		path: "/works/full-stack",
+	},
+	{
+		key: "frontEnd",
+		label: "Front End",
+		path: "/works/front-end",
+	},
+	{
+		key: "backEnd",
+		label: "Back End",
+		path: "/works/back-end",
+	},
+];
+
+export default function Works({ categoryKey = "fullStack" }) {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isChanging, setIsChanging] = useState(false);
 
@@ -78,6 +103,9 @@ export default function Works() {
 	const activeIndexRef = useRef(0);
 	const fadeTimeoutRef = useRef(null);
 	const frameRef = useRef(null);
+	const activeCategory =
+		TECHNOLOGY_GROUPS.find((group) => group.key === categoryKey) ?? TECHNOLOGY_GROUPS[0];
+	const projects = PROJECTS.filter((item) => item.type === activeCategory.key);
 
 	useEffect(() => {
 		function changeActive(index) {
@@ -127,15 +155,17 @@ export default function Works() {
 		};
 	}, []);
 
-	const project = PROJECTS[activeIndex];
-	const isLastProject = activeIndex === PROJECTS.length - 1;
+	const project = projects[activeIndex] ?? projects[0];
+	const isLastProject = activeIndex === projects.length - 1;
+	const projectCount = String(projects.length).padStart(2, "0");
+	const projectNumber = String(activeIndex + 1).padStart(2, "0");
 
 	return (
 		<section className={styles.works}>
 			<div className={styles.mediaRail}>
-				{PROJECTS.map((p, i) => (
+				{projects.map((p, i) => (
 					<article
-						key={p.counter}
+						key={p.title}
 						className={styles.projectSection}
 						ref={(el) => (sectionRefs.current[i] = el)}
 					>
@@ -155,14 +185,29 @@ export default function Works() {
 
 			<aside className={styles.projectInfo}>
 				<div className={styles.infoHeader}>
-					<p>Works</p>
-					<span>/ Damian</span>
+					<div className={styles.infoHeaderTop}>
+						<p>Works</p>
+						<span>/ Damian</span>
+					</div>
+					<div className={styles.technologyButtons}>
+						{TECHNOLOGY_GROUPS.map((group) => (
+							<NavLink
+								to={group.path}
+								key={group.key}
+								className={({ isActive }) =>
+									`${styles.technologyLink} ${isActive ? styles.technologyLinkActive : ""}`
+								}
+							>
+								{group.label}
+							</NavLink>
+						))}
+					</div>
 				</div>
 
 				<div
 					className={`${styles.infoBody} ${isLastProject ? styles.lastProjectInfo : ""} ${isChanging ? styles.isChanging : ""}`}
 				>
-					<p className={styles.counter}>[ {project.counter} / 06 ]</p>
+					<p className={styles.counter}>[ {projectNumber} / {projectCount} ]</p>
 					<h1>{project.title}</h1>
 					<p className={styles.category}>{project.category}</p>
 					<p className={styles.description}>{project.description}</p>

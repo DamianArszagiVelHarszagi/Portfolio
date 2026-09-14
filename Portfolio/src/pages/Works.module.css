@@ -62,7 +62,6 @@
 	opacity: 0.22;
 }
 
-
 .projectInfo {
 	position: fixed;
 	top: 0;
@@ -73,7 +72,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	padding: clamp(190px, 23vh, 250px) var(--page-gutter) 0 var(--page-gutter);
+	padding: clamp(220px, 26vh, 285px) var(--page-gutter) 0 var(--page-gutter);
 	pointer-events: none;
 }
 
@@ -82,6 +81,9 @@
 	top: clamp(82px, 12vh, 126px);
 	left: var(--page-gutter);
 	right: var(--page-gutter);
+}
+
+.infoHeaderTop {
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
@@ -118,6 +120,53 @@
 
 .infoBody.isChanging {
 	opacity: 0;
+}
+
+.technologyButtons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 22px;
+	margin-top: 18px;
+	pointer-events: auto;
+}
+
+.technologyLink {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	min-height: 32px;
+	font-size: 13px;
+	font-weight: 400;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: rgba(245, 245, 245, 0.58);
+	border-bottom: 1px solid rgba(245, 245, 245, 0.24);
+	padding: 0 0 7px;
+	transition:
+		color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.technologyLink::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 100%;
+	bottom: -1px;
+	height: 1px;
+	background: whitesmoke;
+	transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.technologyLink:hover,
+.technologyLinkActive {
+	color: whitesmoke;
+	border-color: rgba(245, 245, 245, 0.35);
+}
+
+.technologyLink:hover::after,
+.technologyLinkActive::after {
+	right: 0;
 }
 
 .counter {
@@ -202,7 +251,7 @@
 }
 
 .quickLink {
-	font-size: 27px;
+	font-size: 20px;
 	font-weight: 400;
 	letter-spacing: 0.05em;
 	color: whitesmoke;
@@ -227,7 +276,7 @@
 	.projectInfo {
 		width: 45vw;
 		right: 0;
-		padding-top: clamp(160px, 21vh, 220px);
+		padding-top: clamp(210px, 25vh, 260px);
 	}
 
 	.description {
