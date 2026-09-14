@@ -3,7 +3,7 @@
 	--page-gutter: clamp(48px, 4vw, 92px);
 	--wide-gutter: max(0px, calc((100vw - 175px - var(--page-max)) / 2));
 	position: relative;
-	min-height: 440vh;
+	min-height: calc(var(--project-count, 1) * 100vh);
 	background: #181818;
 	color: whitesmoke;
 	padding-left: calc(var(--wide-gutter) + var(--page-gutter));
@@ -178,7 +178,7 @@
 }
 
 .infoBody h1 {
-	font-size: clamp(36px, calc(3.2vw + 2px), 58px);
+	font-size: 35px;
 	font-weight: 400;
 	line-height: 1.05;
 	letter-spacing: 0.08em;
