@@ -91,13 +91,13 @@ export default function Home() {
 					<div className={styles.aboutLine} />
 					<div className={styles.aboutText}>
 						<p>
-							I am currently in my second year of the Bachelor of Multimedia &
+							I am currently in my final year of the Bachelor of Multimedia &
 							Creative Technology at Erasmus University College Brussels. My
 							main focus is on web development, and I have worked on several
 							creative and technical projects. I enjoy building interactive
 							experiences and exploring new technologies. Outside of
 							programming, my interests include video creation, playing
-							football, and going to the gym.
+							football, and boxing
 						</p>
 					</div>
 				</motion.div>
@@ -188,4 +188,3 @@ export default function Home() {
 		</div>
 	);
 }
-

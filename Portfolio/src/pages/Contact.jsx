@@ -16,10 +16,6 @@ export default function Contact() {
 						<span>Location</span>
 						<p>Based in Brussels, Belgium</p>
 					</div>
-					<div>
-						<span>Status</span>
-						<p>Available for internships</p>
-					</div>
 				</div>
 				<div className={styles.links}>
 					<a href="mailto:damian@arszagi.eu" className={styles.contactLink}>
