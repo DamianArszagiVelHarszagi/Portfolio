@@ -5,6 +5,7 @@ import rollerCoasterManager from "../assets/works/roller-coaster-manager.png";
 import callistenicsAppOverview from "../assets/works/callistenics-app-overview.png";
 import polskaSzkolaOverview from "../assets/works/polska-szkola-overview.png";
 import hiddenShanghaiOverview from "../assets/works/hidden-shanghai.png";
+import directorDnaLogo from "../assets/works/director dna cover.png";
 import recyclageAppOverview from "../assets/works/recyclage-app-overview.png";
 import tankcalcScreenshot from "../assets/works/tankcalc cover cv.png";
 import wasteWatchOverview from "../assets/works/waste-watch-overview.png";
@@ -34,6 +35,17 @@ const PROJECTS = [
 	},
 	{
 		counter: "03",
+		title: "TankCalc",
+		category: "Personal project / Front End",
+		type: "frontEnd",
+		description:
+			"Interactive route calculator that estimates fuel costs, consumption, stops, return trips, and safety information through a map interface. Users can add stops through search or map clicks, save routes, and reload them later from a modal overview.",
+		tools: ["React.js", "React-Leaflet"],
+		image: tankcalcScreenshot,
+		alt: "Screenshot of TankCalc with an interactive map of Europe, route settings, and saved routes in an organized modal.",
+	},
+	{
+		counter: "04",
 		title: "Polish Institute in Brussels",
 		category: "Client Work / Front End",
 		type: "frontEnd",
@@ -44,7 +56,18 @@ const PROJECTS = [
 		alt: "Polska szkola website overview",
 	},
 	{
-		counter: "04",
+		counter: "05",
+		title: "Director DNA",
+		category: "Course Project / Back End",
+		type: "backEnd",
+		description:
+			"A Laravel backend project about film directors where users can discover, filter, and compare directors. The app includes database relationships between directors, films, genres, style tags, and users, with admin CRUD functionality, authentication, favorites, and a Director DNA comparison based on filmography, genres, style, and IMDb scores.",
+		tools: ["Laravel", "PHP", "Blade", "SQLite"],
+		image: directorDnaLogo,
+		alt: "Director DNA logo for a backend project about managing and comparing film directors.",
+	},
+	{
+		counter: "06",
 		title: "Hidden Shanghai",
 		category: "Course Project / Back End",
 		type: "backEnd",
@@ -55,7 +78,7 @@ const PROJECTS = [
 		alt: "Hidden Shanghai app overview",
 	},
 	{
-		counter: "05",
+		counter: "07",
 		title: "Recycle App",
 		category: "Personal project / Front End",
 		type: "frontEnd",
@@ -66,7 +89,7 @@ const PROJECTS = [
 		alt: "Recyclage App overview",
 	},
 	{
-		counter: "06",
+		counter: "08",
 		title: "Waste Watch",
 		category: "Groups project / Full Stack",
 		type: "fullStack",
@@ -82,17 +105,6 @@ const PROJECTS = [
 		],
 		image: wasteWatchOverview,
 		alt: "Waste Watch app overview",
-	},
-	{
-		counter: "07",
-		title: "TankCalc",
-		category: "Personal project / Front End",
-		type: "frontEnd",
-		description:
-			"Interactive route calculator that estimates fuel costs, consumption, stops, return trips, and safety information through a map interface. Users can add stops through search or map clicks, save routes, and reload them later from a modal overview.",
-		tools: ["React.js", "React-Leaflet", "CSS"],
-		image: tankcalcScreenshot,
-		alt: "Screenshot van TankCalc met een interactieve kaart van Europa, route-instellingen en opgeslagen routes in een overzichtelijke modal.",
 	},
 ];
 
