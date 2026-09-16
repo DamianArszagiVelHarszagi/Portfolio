@@ -6,6 +6,7 @@ import callistenicsAppOverview from "../assets/works/callistenics-app-overview.p
 import polskaSzkolaOverview from "../assets/works/polska-szkola-overview.png";
 import hiddenShanghaiOverview from "../assets/works/hidden-shanghai.png";
 import recyclageAppOverview from "../assets/works/recyclage-app-overview.png";
+import tankcalcScreenshot from "../assets/works/tankcalc cover cv.png";
 import wasteWatchOverview from "../assets/works/waste-watch-overview.png";
 
 const PROJECTS = [
@@ -71,9 +72,27 @@ const PROJECTS = [
 		type: "fullStack",
 		description:
 			"WasteWatch is an app that helps users track and understand their waste habits, providing insights and simple tips to reduce waste.",
-		tools: ["Javascript", "Node.js", "Figma", "Photoshop", "Illustrator", "Html | css"],
+		tools: [
+			"Javascript",
+			"Node.js",
+			"Figma",
+			"Photoshop",
+			"Illustrator",
+			"Html | css",
+		],
 		image: wasteWatchOverview,
 		alt: "Waste Watch app overview",
+	},
+	{
+		counter: "07",
+		title: "TankCalc",
+		category: "Personal project / Front End",
+		type: "frontEnd",
+		description:
+			"Interactive route calculator that estimates fuel costs, consumption, stops, return trips, and safety information through a map interface. Users can add stops through search or map clicks, save routes, and reload them later from a modal overview.",
+		tools: ["React.js", "React-Leaflet", "CSS"],
+		image: tankcalcScreenshot,
+		alt: "Screenshot van TankCalc met een interactieve kaart van Europa, route-instellingen en opgeslagen routes in een overzichtelijke modal.",
 	},
 ];
 
@@ -104,7 +123,8 @@ export default function Works({ categoryKey = "fullStack" }) {
 	const fadeTimeoutRef = useRef(null);
 	const frameRef = useRef(null);
 	const activeCategory =
-		TECHNOLOGY_GROUPS.find((group) => group.key === categoryKey) ?? TECHNOLOGY_GROUPS[0];
+		TECHNOLOGY_GROUPS.find((group) => group.key === categoryKey) ??
+		TECHNOLOGY_GROUPS[0];
 	const projects = PROJECTS.filter((item) => item.type === activeCategory.key);
 
 	useEffect(() => {
@@ -161,7 +181,10 @@ export default function Works({ categoryKey = "fullStack" }) {
 	const projectNumber = String(activeIndex + 1).padStart(2, "0");
 
 	return (
-		<section className={styles.works} style={{ "--project-count": projects.length }}>
+		<section
+			className={styles.works}
+			style={{ "--project-count": projects.length }}
+		>
 			<div className={styles.mediaRail}>
 				{projects.map((p, i) => (
 					<article
@@ -207,7 +230,9 @@ export default function Works({ categoryKey = "fullStack" }) {
 				<div
 					className={`${styles.infoBody} ${isLastProject ? styles.lastProjectInfo : ""} ${isChanging ? styles.isChanging : ""}`}
 				>
-					<p className={styles.counter}>[ {projectNumber} / {projectCount} ]</p>
+					<p className={styles.counter}>
+						[ {projectNumber} / {projectCount} ]
+					</p>
 					<h1>{project.title}</h1>
 					<p className={styles.category}>{project.category}</p>
 					<p className={styles.description}>{project.description}</p>
