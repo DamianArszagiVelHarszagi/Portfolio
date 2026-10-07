@@ -4,7 +4,6 @@
 	--wide-gutter: max(0px, calc((100vw - 175px - var(--page-max)) / 2));
 	position: relative;
 	min-height: calc(var(--project-count, 1) * 100vh);
-	background: #181818;
 	color: whitesmoke;
 	padding-left: calc(var(--wide-gutter) + var(--page-gutter));
 }
