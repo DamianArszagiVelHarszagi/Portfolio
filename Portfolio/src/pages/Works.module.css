@@ -1,7 +1,6 @@
 .works {
 	position: relative;
 	color: whitesmoke;
-	padding-left: 64px;
 }
 
 .mediaRail {
@@ -211,8 +210,8 @@
 .pill {
 	display: inline-flex;
 	align-items: center;
-	font-size: 17px;
-	font-weight: 400;
+	font-size: 14px;
+	font-weight: 600;
 	color: whitesmoke;
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 50px;

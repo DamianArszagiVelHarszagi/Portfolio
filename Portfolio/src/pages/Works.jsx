@@ -9,6 +9,7 @@ import directorDnaLogo from "../assets/works/director dna cover.png";
 import recyclageAppOverview from "../assets/works/recyclage-app-overview.png";
 import tankcalcScreenshot from "../assets/works/tankcalc cover cv.png";
 import wasteWatchOverview from "../assets/works/waste-watch-overview.png";
+import INGarena from "../assets/works/INGArenaportfoliocover.png";
 
 const PROJECTS = [
 	{
@@ -35,6 +36,17 @@ const PROJECTS = [
 	},
 	{
 		counter: "03",
+		title: "ING arena",
+		category: "School Assignment / Front End",
+		type: "frontEnd",
+		description:
+			"ING Arena was a project for my Web & Mobile course in the final year of my degree. For the “I Love Brussels” assignment, I chose a place in Brussels that I love and built a website around it. I also had to learn a new technology, so I chose TypeScript and React.",
+		tools: ["Typescript", "React.js"],
+		image: INGarena,
+		alt: "Screenshot of the ILoveBrussels assignment",
+	},
+	{
+		counter: "04",
 		title: "TankCalc",
 		category: "Personal project / Front End",
 		type: "frontEnd",
@@ -45,7 +57,7 @@ const PROJECTS = [
 		alt: "Screenshot of TankCalc with an interactive map of Europe, route settings, and saved routes in an organized modal.",
 	},
 	{
-		counter: "04",
+		counter: "05",
 		title: "Polish Institute in Brussels",
 		category: "Client Work / Front End",
 		type: "frontEnd",
@@ -56,7 +68,7 @@ const PROJECTS = [
 		alt: "Polska szkola website overview",
 	},
 	{
-		counter: "05",
+		counter: "06",
 		title: "Director DNA",
 		category: "Course Project / Back End",
 		type: "backEnd",
@@ -67,7 +79,7 @@ const PROJECTS = [
 		alt: "Director DNA logo for a backend project about managing and comparing film directors.",
 	},
 	{
-		counter: "06",
+		counter: "07",
 		title: "Hidden Shanghai",
 		category: "Course Project / Back End",
 		type: "backEnd",
@@ -78,7 +90,7 @@ const PROJECTS = [
 		alt: "Hidden Shanghai app overview",
 	},
 	{
-		counter: "07",
+		counter: "08",
 		title: "Recycle App",
 		category: "Personal project / Front End",
 		type: "frontEnd",
@@ -89,7 +101,7 @@ const PROJECTS = [
 		alt: "Recyclage App overview",
 	},
 	{
-		counter: "08",
+		counter: "09",
 		title: "Waste Watch",
 		category: "Groups project / Full Stack",
 		type: "fullStack",
