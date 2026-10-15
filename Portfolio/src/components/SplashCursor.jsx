@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import styles from "./SplashCursor.module.css";
 
 // Selectors that trigger a hover burst
 const HOVER_SELECTOR = "a, button, [role='button']";
@@ -20,7 +21,6 @@ export default function SplashCursor({
 	CURL = 2,
 	SPLAT_RADIUS = 0.04,
 	SPLAT_FORCE = 1000,
-	OPACITY = 0.4,
 }) {
 	const canvasRef = useRef(null);
 
@@ -667,18 +667,6 @@ export default function SplashCursor({
 	}, []);
 
 	return (
-		<canvas
-			ref={canvasRef}
-			style={{
-				position: "fixed",
-				top: 0,
-				left: 0,
-				width: "100vw",
-				height: "100vh",
-				pointerEvents: "none",
-				zIndex: 9997,
-				opacity: OPACITY,
-			}}
-		/>
+		<canvas ref={canvasRef} className={styles.canvas} />
 	);
 }

@@ -51,8 +51,8 @@ export default function Home() {
 							{"DAMIAN".split("").map((letter, i) => (
 								<motion.span
 									key={`d${i}`}
+									className={styles.letter}
 									variants={letterVariant}
-									style={{ display: "inline-block" }}
 								>
 									{letter}
 								</motion.span>
@@ -61,8 +61,8 @@ export default function Home() {
 							{"ARSZAGI".split("").map((letter, i) => (
 								<motion.span
 									key={`a${i}`}
+									className={styles.letter}
 									variants={letterVariant}
-									style={{ display: "inline-block" }}
 								>
 									{letter}
 								</motion.span>

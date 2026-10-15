@@ -29,7 +29,7 @@ export default function Contact() {
 							rel="noreferrer"
 						>
 							LinkedIn
-							<span aria-hidden="true">Open</span>
+							<span>Open</span>
 						</a>
 						<a
 							href="https://github.com/DamianArszagiVelHarszagi"
@@ -37,7 +37,7 @@ export default function Contact() {
 							rel="noreferrer"
 						>
 							GitHub
-							<span aria-hidden="true">Open</span>
+							<span>Open</span>
 						</a>
 					</div>
 				</div>

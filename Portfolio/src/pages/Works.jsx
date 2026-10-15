@@ -193,10 +193,7 @@ export default function Works({ categoryKey = "fullStack" }) {
 	const projectNumber = String(activeIndex + 1).padStart(2, "0");
 
 	return (
-		<section
-			className={styles.works}
-			style={{ "--project-count": projects.length }}
-		>
+		<section className={styles.works}>
 			<div className={styles.mediaRail}>
 				{projects.map((p, i) => (
 					<article

@@ -111,7 +111,7 @@
 	.nav {
 		flex: none;
 		flex-direction: row;
-		gap: clamp(14px, 5vw, 28px);
+		gap: 20px;
 	}
 
 	.link {

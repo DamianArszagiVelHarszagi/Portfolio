@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import styles from "./AnimatedTitle.module.css";
 
 const container = {
 	initial: {},
@@ -26,8 +27,8 @@ export default function AnimatedTitle({ text, className }) {
 			{text.split("").map((letter, i) => (
 				<motion.span
 					key={i}
+					className={styles.letter}
 					variants={letterVariant}
-					style={{ display: "inline-block" }}
 				>
 					{letter}
 				</motion.span>

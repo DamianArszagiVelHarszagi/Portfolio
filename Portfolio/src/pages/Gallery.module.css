@@ -16,8 +16,14 @@
 }
 
 .title {
-	font-size: clamp(54px, calc(7vw + 2px), 92px);
+	font-size: 92px;
 	font-weight: 400;
 	letter-spacing: -0.01em;
 	color: whitesmoke;
+}
+
+@media (max-width: 720px) {
+	.title {
+		font-size: 54px;
+	}
 }
