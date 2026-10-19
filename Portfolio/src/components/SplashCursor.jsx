@@ -8,8 +8,8 @@ const CONFIG = {
 	bloom: false,
 	sunrays: false,
 	colorPalette: ["#D9D9D9"],
-	brightness: 4.7,
-	densityDissipation: 10,
+	brightness: 8,
+	densityDissipation: 5,
 	velocityDissipation: 3,
 	pressure: 0.5,
 	curl: 5,
@@ -26,7 +26,6 @@ export default function SplashCursor() {
 		fluid.setConfig(CONFIG);
 		fluid.start();
 
-		// The canvas has pointer-events: none, so forward mouse moves to it
 		const canvas = container.querySelector("canvas");
 		const onMove = (e) =>
 			canvas.dispatchEvent(
