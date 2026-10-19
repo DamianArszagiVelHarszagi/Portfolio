@@ -234,7 +234,7 @@
 	color: whitesmoke;
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 50px;
-	padding: 10px 21px;
+	padding: 10px 20px;
 	cursor: default;
 	user-select: none;
 	transform: translateY(0);
@@ -255,7 +255,7 @@
 .skillsLinks {
 	position: absolute;
 	bottom: 40px;
-	right: 80px;
+	right: 100px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
@@ -263,9 +263,8 @@
 }
 
 .skillsLink {
-	font-size: 27px;
+	font-size: 25px;
 	font-weight: 400;
-	letter-spacing: 0.05em;
 	color: whitesmoke;
 	transition: opacity 0.2s ease;
 }
