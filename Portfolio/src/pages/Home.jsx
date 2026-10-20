@@ -39,6 +39,11 @@ export default function Home() {
 
 	return (
 		<div className={styles.home}>
+			<title>Damian Arszagi | Web Developer Portfolio</title>
+			<meta
+				name="description"
+				content="Portfolio of Damian Arszagi, web developer and Multimedia & Creative Technology student in Brussels, focused on frontend development with React."
+			/>
 			<div className={styles.topSection}>
 				<div className={styles.hero}>
 					<div className={styles.nameBlock}>

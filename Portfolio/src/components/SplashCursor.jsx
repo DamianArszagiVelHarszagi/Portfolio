@@ -10,11 +10,11 @@ const CONFIG = {
 	colorPalette: ["#D9D9D9"],
 	brightness: 8,
 	densityDissipation: 5,
-	velocityDissipation: 3,
+	velocityDissipation: 2,
 	pressure: 0.5,
 	curl: 5,
 	splatRadius: 0.12,
-	splatForce: 1000,
+	splatForce: 2000,
 };
 
 export default function SplashCursor() {

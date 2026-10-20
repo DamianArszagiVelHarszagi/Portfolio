@@ -4,6 +4,11 @@ import styles from "./Contact.module.css";
 export default function Contact() {
 	return (
 		<div className={styles.contact}>
+			<title>Contact | Damian Arszagi</title>
+			<meta
+				name="description"
+				content="Contact Damian Arszagi, web developer in Brussels, for internships, business inquiries, and collaborations."
+			/>
 			<div className={styles.content}>
 				<p className={styles.label}>Get in Touch</p>
 				<AnimatedTitle text="Contact" className={styles.title} />

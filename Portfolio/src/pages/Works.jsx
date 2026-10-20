@@ -125,16 +125,22 @@ const TECHNOLOGY_GROUPS = [
 		key: "fullStack",
 		label: "Full Stack",
 		path: "/works/full-stack",
+		description:
+			"Full stack projects by Damian Arszagi, from management apps to interactive maps, built with Vue.js, Kotlin, Spring Boot, and Node.js.",
 	},
 	{
 		key: "frontEnd",
 		label: "Front End",
 		path: "/works/front-end",
+		description:
+			"Front end projects by Damian Arszagi, including client websites and interactive React apps with maps, TypeScript, and custom designs.",
 	},
 	{
 		key: "backEnd",
 		label: "Back End",
 		path: "/works/back-end",
+		description:
+			"Back end projects by Damian Arszagi built with Laravel and PHP, featuring APIs, database relationships, authentication, and admin tools.",
 	},
 ];
 
@@ -206,6 +212,8 @@ export default function Works({ categoryKey = "fullStack" }) {
 
 	return (
 		<section className={styles.works}>
+			<title>{`${activeCategory.label} Projects | Damian Arszagi`}</title>
+			<meta name="description" content={activeCategory.description} />
 			<div className={styles.mediaRail}>
 				{projects.map((p, i) => (
 					<article
