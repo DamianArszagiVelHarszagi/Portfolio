@@ -19,7 +19,14 @@ class ProjectForm
                     ->required(),
                 TextInput::make('title')
                     ->required(),
-                TextInput::make('category')
+                Select::make('category')
+                    ->options([
+                        'Course Project' => 'Course Project',
+                        'School Assignment' => 'School Assignment',
+                        'Personal Project' => 'Personal Project',
+                        'Client Work' => 'Client Work',
+                        'Group Project' => 'Group Project',
+                    ])
                     ->required(),
                 Select::make('type')
                     ->options([

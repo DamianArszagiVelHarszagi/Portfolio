@@ -156,7 +156,9 @@ export default function Works({ categoryKey = "fullStack" }) {
 					</p>
 
 					<h1>{project.title}</h1>
-					<p className={styles.category}>{project.category}</p>
+					<p className={styles.category}>
+						{project.category} / {activeCategory.label}
+					</p>
 					<p className={styles.description}>{project.description}</p>
 					<div className={styles.pills}>
 						{project.tools.map((tool) => (
