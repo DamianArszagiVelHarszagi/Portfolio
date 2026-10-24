@@ -1,124 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Works.module.css";
-import rollerCoasterManager from "../assets/works/roller-coaster-manager.png";
-import callistenicsAppOverview from "../assets/works/callistenics-app-overview.png";
-import polskaSzkolaOverview from "../assets/works/polska-szkola-overview.png";
-import hiddenShanghaiOverview from "../assets/works/hidden-shanghai.png";
-import directorDnaLogo from "../assets/works/director dna cover.png";
-import recyclageAppOverview from "../assets/works/recyclage-app-overview.png";
-import tankcalcScreenshot from "../assets/works/tankcalc cover cv.png";
-import wasteWatchOverview from "../assets/works/waste-watch-overview.png";
-import INGarena from "../assets/works/INGArenaportfoliocover.png";
-
-const PROJECTS = [
-	{
-		counter: "01",
-		title: "Roller Coaster Manager",
-		category: "Course Project / Full Stack",
-		type: "fullStack",
-		description:
-			"A management app for Walibi roller coasters. View all attractions, sort them by category, and log breakdowns to keep operations running smoothly.",
-		tools: ["Vue.js", "Kotlin", "Spring Boot"],
-		image: rollerCoasterManager,
-		alt: "Roller Coaster Manager app overview",
-	},
-	{
-		counter: "02",
-		title: "Cali Brussels",
-		category: "Course Project / Full Stack",
-		type: "fullStack",
-		description:
-			"Cali Brussels is a web platform that shows calisthenics parks in Brussels on an interactive map. Users can search for parks, filter by location or equipment, and view or add reviews.",
-		tools: ["Figma", "Illustrator", "Javascript", "Node.js", "Html | css"],
-		image: callistenicsAppOverview,
-		alt: "Cali Brussels app overview",
-	},
-	{
-		counter: "03",
-		title: "ING arena",
-		category: "School Assignment / Front End",
-		type: "frontEnd",
-		description:
-			"ING Arena was a project for my Web & Mobile course in the final year of my degree. For the “I Love Brussels” assignment, I chose a place in Brussels that I love and built a website around it. I also had to learn a new technology, so I chose TypeScript and React.",
-		tools: ["Typescript", "React.js"],
-		image: INGarena,
-		alt: "Screenshot of the ILoveBrussels assignment",
-	},
-	{
-		counter: "04",
-		title: "TankCalc",
-		category: "Personal project / Front End",
-		type: "frontEnd",
-		description:
-			"Interactive route calculator that estimates fuel costs, consumption, stops, return trips, and safety information through a map interface. Users can add stops through search or map clicks, save routes, and reload them later from a modal overview.",
-		tools: ["React.js", "React-Leaflet"],
-		image: tankcalcScreenshot,
-		alt: "Screenshot of TankCalc with an interactive map of Europe, route settings, and saved routes in an organized modal.",
-	},
-	{
-		counter: "05",
-		title: "Polish Institute in Brussels",
-		category: "Client Work / Front End",
-		type: "frontEnd",
-		description:
-			"Full redesign of the old website for the Polish Institute Brussels, starting with a Figma design and later developed into a website after consultations.",
-		tools: ["Javascript", "Html | css", "Figma", "Photoshop"],
-		image: polskaSzkolaOverview,
-		alt: "Polska szkola website overview",
-	},
-	{
-		counter: "06",
-		title: "Director DNA",
-		category: "Course Project / Back End",
-		type: "backEnd",
-		description:
-			"A Laravel backend project about film directors where users can discover, filter, and compare directors. The app includes database relationships between directors, films, genres, style tags, and users, with admin CRUD functionality, authentication, favorites, and a Director DNA comparison based on filmography, genres, style, and IMDb scores.",
-		tools: ["Laravel", "PHP", "Blade", "SQLite"],
-		image: directorDnaLogo,
-		alt: "Director DNA logo for a backend project about managing and comparing film directors.",
-	},
-	{
-		counter: "07",
-		title: "Hidden Shanghai",
-		category: "Course Project / Back End",
-		type: "backEnd",
-		description:
-			"A backend application that uncovers hidden gems and lesser-known locations across Shanghai, serving location data and user-submitted spots through a Laravel API.",
-		tools: ["Laravel", "PHP"],
-		image: hiddenShanghaiOverview,
-		alt: "Hidden Shanghai app overview",
-	},
-	{
-		counter: "08",
-		title: "Recycle App",
-		category: "Personal project / Front End",
-		type: "frontEnd",
-		description:
-			"Recycling app that provides information about waste collection schedules and offers simple advice on how to sort waste correctly.",
-		tools: ["React.js", "Typescript"],
-		image: recyclageAppOverview,
-		alt: "Recyclage App overview",
-	},
-	{
-		counter: "09",
-		title: "Waste Watch",
-		category: "Groups project / Full Stack",
-		type: "fullStack",
-		description:
-			"WasteWatch is an app that helps users track and understand their waste habits, providing insights and simple tips to reduce waste.",
-		tools: [
-			"Javascript",
-			"Node.js",
-			"Figma",
-			"Photoshop",
-			"Illustrator",
-			"Html | css",
-		],
-		image: wasteWatchOverview,
-		alt: "Waste Watch app overview",
-	},
-];
 
 const TECHNOLOGY_GROUPS = [
 	{
@@ -148,6 +30,12 @@ export default function Works({ categoryKey = "fullStack" }) {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isChanging, setIsChanging] = useState(false);
 
+	const [allProjects, setAllProjects] = useState([]);
+	useEffect(() => {
+		fetch(`${import.meta.env.VITE_API_URL}/api/projects`)
+			.then((res) => res.json())
+			.then((json) => setAllProjects(json.data));
+	}, []);
 	const sectionRefs = useRef([]);
 	const activeIndexRef = useRef(0);
 	const fadeTimeoutRef = useRef(null);
@@ -155,7 +43,9 @@ export default function Works({ categoryKey = "fullStack" }) {
 	const activeCategory =
 		TECHNOLOGY_GROUPS.find((group) => group.key === categoryKey) ??
 		TECHNOLOGY_GROUPS[0];
-	const projects = PROJECTS.filter((item) => item.type === activeCategory.key);
+	const projects = allProjects.filter(
+		(item) => item.type === activeCategory.key,
+	);
 
 	useEffect(() => {
 		function changeActive(index) {
@@ -210,6 +100,8 @@ export default function Works({ categoryKey = "fullStack" }) {
 	const projectCount = String(projects.length).padStart(2, "0");
 	const projectNumber = String(activeIndex + 1).padStart(2, "0");
 
+	if (!project) return null;
+
 	return (
 		<section className={styles.works}>
 			<title>{`${activeCategory.label} Projects | Damian Arszagi`}</title>
@@ -262,6 +154,7 @@ export default function Works({ categoryKey = "fullStack" }) {
 					<p className={styles.counter}>
 						[ {projectNumber} / {projectCount} ]
 					</p>
+
 					<h1>{project.title}</h1>
 					<p className={styles.category}>{project.category}</p>
 					<p className={styles.description}>{project.description}</p>
