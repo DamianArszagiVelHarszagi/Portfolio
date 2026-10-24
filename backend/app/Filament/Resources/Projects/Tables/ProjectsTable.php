@@ -15,36 +15,15 @@ class ProjectsTable
     {
         return $table
             ->columns([
-                TextColumn::make('slug')
-                    ->searchable(),
+                TextColumn::make('position')
+                    ->sortable(),
+                ImageColumn::make('image')
+                    ->disk('public'),
                 TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('category')
-                    ->searchable(),
-                TextColumn::make('type')
-                    ->searchable(),
-                ImageColumn::make('image'),
-                TextColumn::make('alt')
-                    ->searchable(),
-                TextColumn::make('github_url')
-                    ->searchable(),
-                TextColumn::make('live_url')
-                    ->searchable(),
-                TextColumn::make('position')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('type'),
             ])
-            ->filters([
-                //
-            ])
+            ->defaultSort('position')
             ->recordActions([
                 EditAction::make(),
             ])

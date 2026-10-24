@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Projects\Schemas;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -19,16 +21,23 @@ class ProjectForm
                     ->required(),
                 TextInput::make('category')
                     ->required(),
-                TextInput::make('type')
+                Select::make('type')
+                    ->options([
+                        'fullStack' => 'Full Stack',
+                        'frontEnd' => 'Front End',
+                        'backEnd' => 'Back End',
+                    ])
                     ->required(),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-                Textarea::make('tools')
+                TagsInput::make('tools')
                     ->required()
                     ->columnSpanFull(),
                 FileUpload::make('image')
-                    ->image(),
+                    ->image()
+                    ->disk('public')
+                    ->directory('works'),
                 TextInput::make('alt'),
                 TextInput::make('github_url')
                     ->url(),
