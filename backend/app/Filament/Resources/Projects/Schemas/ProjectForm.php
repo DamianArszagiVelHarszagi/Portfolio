@@ -46,6 +46,14 @@ class ProjectForm
                     ->disk('public')
                     ->directory('works'),
                 TextInput::make('alt'),
+                TextInput::make('role')
+                    ->placeholder('Front-end developer'),
+                TextInput::make('team')
+                    ->placeholder('Solo, or names'),
+                TextInput::make('year')
+                    ->placeholder('2025'),
+                TextInput::make('duration')
+                    ->placeholder('6 weeks'),
                 TextInput::make('github_url')
                     ->url(),
                 TextInput::make('live_url')

@@ -28,6 +28,10 @@ class ProjectResource extends JsonResource
             'github_url' => $this->github_url,
             'live_url' => $this->live_url,
             'position' => $this->position,
+            'role' => $this->role,
+            'year' => $this->year,
+            'duration' => $this->duration,
+            'team' => $this->team,
         ];
     }
 }

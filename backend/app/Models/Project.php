@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\Model;
     'github_url',
     'live_url',
     'position',
+    'role',
+    'year',
+    'duration',
+    'team',
 ])]
 class Project extends Model
 {
