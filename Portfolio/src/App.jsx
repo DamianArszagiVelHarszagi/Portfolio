@@ -5,6 +5,7 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Works from "./pages/Works";
 import Contact from "./pages/Contact";
+import Project from "./pages/Project";
 import SplashCursor from "./components/SplashCursor";
 import "./App.css";
 
@@ -65,6 +66,7 @@ function App() {
               path="/works/back-end"
               element={<Works key="backEnd" categoryKey="backEnd" />}
             />
+            <Route path="/works/:slug" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
         </Routes>

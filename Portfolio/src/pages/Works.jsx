@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./Works.module.css";
 
 const TECHNOLOGY_GROUPS = [
@@ -113,7 +113,7 @@ export default function Works({ categoryKey = "fullStack" }) {
 						className={styles.projectSection}
 						ref={(el) => (sectionRefs.current[i] = el)}
 					>
-						<div className={styles.projectImage}>
+						<Link to={`/works/${p.slug}`} className={styles.projectImage}>
 							<img
 								src={p.image}
 								alt={p.alt}
@@ -122,7 +122,7 @@ export default function Works({ categoryKey = "fullStack" }) {
 								decoding="async"
 								fetchPriority={i === 0 ? "high" : "auto"}
 							/>
-						</div>
+						</Link>
 					</article>
 				))}
 			</div>

@@ -4,7 +4,7 @@
 }
 
 .mediaRail {
-	width: 670px;
+	width: 50%;
 	margin-left: 96px;
 }
 
@@ -18,8 +18,9 @@
 }
 
 .projectImage {
+	display: block;
 	position: relative;
-	width: 100%;
+	width: 150%;
 	aspect-ratio: 16 / 9;
 	overflow: hidden;
 	background: #181818;
@@ -31,7 +32,7 @@
 }
 
 .projectPhoto {
-	width: 100%;
+	width: 150%;
 	height: 100%;
 	object-fit: cover;
 	object-position: center;

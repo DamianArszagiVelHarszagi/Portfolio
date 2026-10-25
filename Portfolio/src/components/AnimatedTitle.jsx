@@ -24,14 +24,21 @@ export default function AnimatedTitle({ text, className }) {
 			initial="initial"
 			animate="animate"
 		>
-			{text.split("").map((letter, i) => (
-				<motion.span
-					key={i}
-					className={styles.letter}
-					variants={letterVariant}
-				>
-					{letter}
-				</motion.span>
+			{text.split(" ").map((word, w) => (
+				<span key={w}>
+					{w > 0 && " "}
+					<span className={styles.word}>
+						{word.split("").map((letter, i) => (
+							<motion.span
+								key={i}
+								className={styles.letter}
+								variants={letterVariant}
+							>
+								{letter}
+							</motion.span>
+						))}
+					</span>
+				</span>
 			))}
 		</motion.h1>
 	);
