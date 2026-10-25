@@ -58,8 +58,67 @@ export default function Project() {
 					{project.category} / {type.label}
 				</p>
 
-				<div className={styles.cover}>
-					<img src={project.image} alt={project.alt} className={styles.coverPhoto} />
+				<div className={styles.intro}>
+					<div className={styles.cover}>
+						<img src={project.image} alt={project.alt} className={styles.coverPhoto} />
+					</div>
+
+					<section className={styles.overview}>
+						<h2 className={styles.overviewTitle}>Overview</h2>
+						<p className={styles.description}>{project.description}</p>
+
+						<dl className={styles.details}>
+							{project.role && (
+								<div className={styles.detail}>
+									<dt>Role</dt>
+									<dd>{project.role}</dd>
+								</div>
+							)}
+							{project.year && (
+								<div className={`${styles.detail} ${styles.half}`}>
+									<dt>Year</dt>
+									<dd>{project.year}</dd>
+								</div>
+							)}
+							{project.duration && (
+								<div className={`${styles.detail} ${styles.half}`}>
+									<dt>Duration</dt>
+									<dd>{project.duration}</dd>
+								</div>
+							)}
+							{project.team && (
+								<div className={styles.detail}>
+									<dt>Team</dt>
+									<dd>{project.team}</dd>
+								</div>
+							)}
+							<div className={styles.detail}>
+								<dt>Tools</dt>
+								<dd className={styles.pills}>
+									{project.tools.map((tool) => (
+										<span className={styles.pill} key={tool}>
+											{tool}
+										</span>
+									))}
+								</dd>
+							</div>
+						</dl>
+
+						{(project.github_url || project.live_url) && (
+							<div className={styles.links}>
+								{project.github_url && (
+									<a href={project.github_url} target="_blank" rel="noreferrer" className={styles.link}>
+										GitHub {"↗"}
+									</a>
+								)}
+								{project.live_url && (
+									<a href={project.live_url} target="_blank" rel="noreferrer" className={styles.link}>
+										Live site {"↗"}
+									</a>
+								)}
+							</div>
+						)}
+					</section>
 				</div>
 			</motion.div>
 		</article>
