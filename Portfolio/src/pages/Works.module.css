@@ -95,12 +95,6 @@
 	color: whitesmoke;
 }
 
-.infoHeader span {
-	font-size: 17px;
-	font-weight: 400;
-	color: whitesmoke;
-}
-
 .infoBody {
 	width: 100%;
 	max-width: 640px;
@@ -166,29 +160,31 @@
 }
 
 .counter {
-	font-size: 22px;
+	font-size: 14px;
 	font-weight: 400;
 	letter-spacing: 0.28em;
-	color: whitesmoke;
-	margin-bottom: 24px;
+	color: rgba(245, 245, 245, 0.5);
+	margin-bottom: 20px;
 }
 
 .infoBody h1 {
-	font-size: 35px;
+	font-size: 48px;
 	font-weight: 400;
 	line-height: 1.05;
-	letter-spacing: 0.08em;
+	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	color: whitesmoke;
-	margin-bottom: 12px;
+	margin-bottom: 14px;
 }
 
 .category {
-	font-size: 21px;
+	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.4;
-	color: rgba(245, 245, 245, 0.86);
-	margin-bottom: 24px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: rgba(245, 245, 245, 0.6);
+	margin-bottom: 28px;
 }
 
 .description {
@@ -301,10 +297,17 @@
 	}
 
 	.counter {
-		font-size: 17px;
+		font-size: 13px;
 	}
 
-	.category,
+	.infoBody h1 {
+		font-size: 32px;
+	}
+
+	.category {
+		font-size: 13px;
+	}
+
 	.description {
 		font-size: 15px;
 	}

@@ -39,7 +39,6 @@ export default function Works({ categoryKey = "fullStack" }) {
 	const sectionRefs = useRef([]);
 	const activeIndexRef = useRef(0);
 	const fadeTimeoutRef = useRef(null);
-	const frameRef = useRef(null);
 	const activeCategory =
 		TECHNOLOGY_GROUPS.find((group) => group.key === categoryKey) ??
 		TECHNOLOGY_GROUPS[0];
@@ -61,39 +60,25 @@ export default function Works({ categoryKey = "fullStack" }) {
 			}, 180);
 		}
 
-		function findClosestSection() {
-			const viewportCenter = window.innerHeight / 2;
-			let closestIndex = activeIndexRef.current;
-			let closestDistance = Infinity;
+		// only the section crossing the middle of the screen counts as intersecting
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						changeActive(sectionRefs.current.indexOf(entry.target));
+					}
+				});
+			},
+			{ rootMargin: "-50% 0px -50% 0px" },
+		);
 
-			sectionRefs.current.forEach((el, i) => {
-				if (!el) return;
-				const rect = el.getBoundingClientRect();
-				const distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
-
-				if (distance < closestDistance) {
-					closestDistance = distance;
-					closestIndex = i;
-				}
-			});
-
-			changeActive(closestIndex);
-		}
-
-		function loop() {
-			findClosestSection();
-			frameRef.current = requestAnimationFrame(loop);
-		}
-
-		frameRef.current = requestAnimationFrame(loop);
+		sectionRefs.current.forEach((el) => el && observer.observe(el));
 
 		return () => {
-			if (frameRef.current !== null) {
-				cancelAnimationFrame(frameRef.current);
-			}
+			observer.disconnect();
 			clearTimeout(fadeTimeoutRef.current);
 		};
-	}, []);
+	}, [allProjects, categoryKey]);
 
 	const project = projects[activeIndex] ?? projects[0];
 	const isLastProject = activeIndex === projects.length - 1;
@@ -131,7 +116,6 @@ export default function Works({ categoryKey = "fullStack" }) {
 				<div className={styles.infoHeader}>
 					<div className={styles.infoHeaderTop}>
 						<p>Works</p>
-						<span>/ Damian</span>
 					</div>
 					<div className={styles.technologyButtons}>
 						{TECHNOLOGY_GROUPS.map((group) => (
@@ -156,9 +140,7 @@ export default function Works({ categoryKey = "fullStack" }) {
 					</p>
 
 					<h1>{project.title}</h1>
-					<p className={styles.category}>
-						{project.category} / {activeCategory.label}
-					</p>
+					<p className={styles.category}>{project.category}</p>
 					<p className={styles.description}>{project.description}</p>
 					<div className={styles.pills}>
 						{project.tools.map((tool) => (
