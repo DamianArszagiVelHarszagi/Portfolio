@@ -46,27 +46,6 @@ body {
 	position: relative;
 }
 
-body::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	pointer-events: none;
-	background-image:
-		radial-gradient(
-			circle 420px at 20% 550px,
-			rgba(255, 255, 255, 7%),
-			transparent
-		),
-		radial-gradient(
-			circle 380px at 90% 1200px,
-			rgba(52, 209, 203, 12%),
-			transparent
-		);
-	background-size: 100% 1600px;
-	background-repeat: repeat-y;
-}
-
 a {
 	color: inherit;
 	text-decoration: none;
