@@ -31,4 +31,10 @@
 		align-items: flex-start;
 		padding: 28px 22px;
 	}
+
+	.email {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+	}
 }

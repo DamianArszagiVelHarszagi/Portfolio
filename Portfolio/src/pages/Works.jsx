@@ -81,9 +81,6 @@ export default function Works({ categoryKey = "fullStack" }) {
 	}, [allProjects, categoryKey]);
 
 	const project = projects[activeIndex] ?? projects[0];
-	const isLastProject = activeIndex === projects.length - 1;
-	const projectCount = String(projects.length).padStart(2, "0");
-	const projectNumber = String(activeIndex + 1).padStart(2, "0");
 
 	if (!project) return null;
 
@@ -108,6 +105,19 @@ export default function Works({ categoryKey = "fullStack" }) {
 								fetchPriority={i === 0 ? "high" : "auto"}
 							/>
 						</Link>
+
+						{/* only visible on mobile, desktop uses the fixed panel */}
+						<div className={styles.cardInfo}>
+							<ProjectText
+								project={p}
+								index={i}
+								count={projects.length}
+								Heading="h2"
+							/>
+							<Link to={`/works/${p.slug}`} className={styles.viewLink}>
+								View project {"\u2192"}
+							</Link>
+						</div>
 					</article>
 				))}
 			</div>
@@ -133,24 +143,37 @@ export default function Works({ categoryKey = "fullStack" }) {
 				</div>
 
 				<div
-					className={`${styles.infoBody} ${isLastProject ? styles.lastProjectInfo : ""} ${isChanging ? styles.isChanging : ""}`}
+					className={`${styles.infoBody} ${isChanging ? styles.isChanging : ""}`}
 				>
-					<p className={styles.counter}>
-						[ {projectNumber} / {projectCount} ]
-					</p>
-
-					<h1>{project.title}</h1>
-					<p className={styles.category}>{project.category}</p>
-					<p className={styles.description}>{project.description}</p>
-					<div className={styles.pills}>
-						{project.tools.map((tool) => (
-							<span className={styles.pill} key={tool}>
-								{tool}
-							</span>
-						))}
-					</div>
+					<ProjectText
+						project={project}
+						index={activeIndex}
+						count={projects.length}
+						Heading="h1"
+					/>
 				</div>
 			</aside>
 		</section>
+	);
+}
+
+function ProjectText({ project, index, count, Heading }) {
+	return (
+		<>
+			<p className={styles.counter}>
+				[ {String(index + 1).padStart(2, "0")} /{" "}
+				{String(count).padStart(2, "0")} ]
+			</p>
+			<Heading className={styles.title}>{project.title}</Heading>
+			<p className={styles.category}>{project.category}</p>
+			<p className={styles.description}>{project.description}</p>
+			<div className={styles.pills}>
+				{project.tools.map((tool) => (
+					<span className={styles.pill} key={tool}>
+						{tool}
+					</span>
+				))}
+			</div>
+		</>
 	);
 }
