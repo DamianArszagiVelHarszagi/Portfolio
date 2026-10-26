@@ -75,15 +75,6 @@ export default function Home() {
 						</motion.h1>
 						<p className={styles.role}>Web Developer</p>
 					</div>
-
-					<div className={styles.contactBlock}>
-						<p className={styles.contactText}>
-							For business inquiries, email me at
-						</p>
-						<a href="mailto:damian@arszagi.eu" className={styles.contactEmail}>
-							damian@arszagi.eu
-						</a>
-					</div>
 				</div>
 
 				<motion.div

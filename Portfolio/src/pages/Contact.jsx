@@ -13,9 +13,6 @@ export default function Contact() {
 				<p className={styles.label}>Get in Touch</p>
 				<AnimatedTitle text="Contact" className={styles.title} />
 				<div className={styles.divider} />
-				<p className={styles.intro}>
-					Available for internships and open to new collaborations.
-				</p>
 				<div className={styles.details}>
 					<div>
 						<span>Location</span>

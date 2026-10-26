@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Sidebar from '../components/Sidebar';
+import Footer from '../components/Footer';
 import styles from './MainLayout.module.css';
 
 export default function MainLayout() {
@@ -34,6 +35,7 @@ export default function MainLayout() {
 					/>
 				)}
 				<Outlet />
+				<Footer />
 			</main>
 		</div>
 	);

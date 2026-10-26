@@ -167,16 +167,6 @@ export default function Works({ categoryKey = "fullStack" }) {
 							</span>
 						))}
 					</div>
-					{isLastProject && (
-						<div className={styles.quickLinks}>
-							<a href="/" className={styles.quickLink}>
-								HOME {"\u2192"}
-							</a>
-							<a href="/contact" className={styles.quickLink}>
-								CONTACT {"\u2192"}
-							</a>
-						</div>
-					)}
 				</div>
 			</aside>
 		</section>

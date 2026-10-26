@@ -234,30 +234,6 @@
 	transform: translateY(-2px);
 }
 
-.quickLinks {
-	position: absolute;
-	right: 64px;
-	bottom: 70px;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	gap: 8px;
-	margin-top: 0;
-	pointer-events: auto;
-}
-
-.quickLink {
-	font-size: 20px;
-	font-weight: 400;
-	letter-spacing: 0.05em;
-	color: whitesmoke;
-	transition: opacity 0.2s ease;
-}
-
-.quickLink:hover {
-	opacity: 0.5;
-}
-
 @media (max-width: 1280px) {
 	.works {
 		padding-left: 48px;
@@ -282,10 +258,6 @@
 		right: 48px;
 	}
 
-	.quickLinks {
-		right: 48px;
-	}
-
 	.description {
 		font-size: 16px;
 	}
@@ -305,12 +277,6 @@
 		min-height: auto;
 		display: block;
 		padding: 0 0 56px;
-	}
-
-	.quickLinks {
-		right: 22px;
-		align-items: flex-start;
-		margin-top: 36px;
 	}
 
 	.projectInfo {

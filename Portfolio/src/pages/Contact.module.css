@@ -35,14 +35,6 @@
 	margin-bottom: 36px;
 }
 
-.intro {
-	font-size: 20px;
-	font-weight: 400;
-	line-height: 1.9;
-	color: gray;
-	margin-bottom: 38px;
-}
-
 .details {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));

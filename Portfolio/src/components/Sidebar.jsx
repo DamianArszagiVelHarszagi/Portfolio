@@ -84,7 +84,7 @@ export default function Sidebar() {
 								`${styles.link} ${isActive ? styles.active : ""}`
 							}
 						>
-							Works
+							Work
 						</NavLink>
 					</motion.div>
 					<motion.div variants={navItem}>
@@ -139,4 +139,3 @@ export default function Sidebar() {
 		</aside>
 	);
 }
-

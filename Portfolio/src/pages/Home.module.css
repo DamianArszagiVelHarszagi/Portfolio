@@ -49,31 +49,6 @@
 }
 
 /* ── Contact block ── */
-.contactBlock {
-	margin-top: 10px;
-}
-
-.contactText {
-	font-size: 18px;
-	font-weight: 400;
-	color: dimgray;
-	margin-bottom: 5px;
-}
-
-.contactEmail {
-	font-size: 19px;
-	font-weight: 400;
-	color: whitesmoke;
-	letter-spacing: 0.02em;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-	padding-bottom: 3px;
-	transition: border-color 0.2s ease;
-}
-
-.contactEmail:hover {
-	border-color: whitesmoke;
-}
-
 /* ── About column ── */
 .about {
 	width: 640px;
@@ -290,14 +265,6 @@
 
 	.aboutText p,
 	.motivationParagraphs p {
-		font-size: 20px;
-	}
-
-	.contactText {
-		font-size: 19px;
-	}
-
-	.contactEmail {
 		font-size: 20px;
 	}
 }
