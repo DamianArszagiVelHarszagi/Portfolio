@@ -177,54 +177,28 @@
 }
 
 .skillsGrid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
 }
 
 .skillsColumn {
 	display: flex;
-	flex-direction: column;
-	gap: 24px;
+	align-items: baseline;
+	gap: 40px;
 }
 
 .columnTitle {
+	flex-shrink: 0;
+	width: 160px;
 	font-size: 16px;
 	font-weight: 400;
 	letter-spacing: 0.2em;
 	color: gray;
 }
 
-.pills {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-}
-
-.pill {
-	display: inline-flex;
-	align-items: center;
+.tags {
 	font-size: 17px;
-	font-weight: 400;
-	color: whitesmoke;
-	border: 1px solid rgba(255, 255, 255, 0.2);
-	border-radius: 50px;
-	padding: 10px 20px;
-	cursor: default;
-	user-select: none;
-	transform: translateY(0);
-	transition:
-		background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-		border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-		color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.pill:hover {
-	background-color: whitesmoke;
-	border-color: whitesmoke;
-	color: #181818;
-	transform: translateY(-2px);
 }
 
 .skillsLinks {
@@ -331,8 +305,13 @@
 	}
 
 	.skillsGrid {
-		grid-template-columns: 1fr;
 		gap: 34px;
+	}
+
+	/* title above the skills on small screens */
+	.skillsColumn {
+		flex-direction: column;
+		gap: 12px;
 	}
 
 	.skillsDivider {

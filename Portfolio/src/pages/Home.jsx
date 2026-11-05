@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Tags from "../components/Tags";
 import styles from "./Home.module.css";
 import photo from "../assets/me_picture.jpg";
 
@@ -131,42 +132,26 @@ export default function Home() {
 				<div className={styles.skillsGrid}>
 					<div className={styles.skillsColumn}>
 						<p className={styles.columnTitle}>FRONTEND</p>
-						<div className={styles.pills}>
-							<span className={styles.pill}>React.js</span>
-							<span className={styles.pill}>Javascript</span>
-							<span className={styles.pill}>Bootstrap</span>
-							<span className={styles.pill}>Motion</span>
-							<span className={styles.pill}>Tailwind CSS</span>
-							<span className={styles.pill}>Typescript</span>
-							<span className={styles.pill}>Vue.js</span>
-						</div>
+						<Tags
+							className={styles.tags}
+							items={["React.js", "Javascript", "Bootstrap", "Motion", "Tailwind CSS", "Typescript", "Vue.js"]}
+						/>
 					</div>
 
 					<div className={styles.skillsColumn}>
 						<p className={styles.columnTitle}>BACKEND</p>
-						<div className={styles.pills}>
-							<span className={styles.pill}>Node.js</span>
-							<span className={styles.pill}>Kotlin</span>
-							<span className={styles.pill}>Spring Boot</span>
-							<span className={styles.pill}>Express.js</span>
-							<span className={styles.pill}>Laravel</span>
-							<span className={styles.pill}>PHP</span>
-							<span className={styles.pill}>SQL</span>
-						</div>
+						<Tags
+							className={styles.tags}
+							items={["Node.js", "Kotlin", "Spring Boot", "Express.js", "Laravel", "PHP", "SQL"]}
+						/>
 					</div>
 
 					<div className={styles.skillsColumn}>
 						<p className={styles.columnTitle}>TOOLS</p>
-						<div className={styles.pills}>
-							<span className={styles.pill}>VSCode</span>
-							<span className={styles.pill}>Figma</span>
-							<span className={styles.pill}>After Effects</span>
-							<span className={styles.pill}>Premiere Pro</span>
-							<span className={styles.pill}>Photoshop</span>
-							<span className={styles.pill}>Illustrator</span>
-							<span className={styles.pill}>Lightroom</span>
-							<span className={styles.pill}>InDesign</span>
-						</div>
+						<Tags
+							className={styles.tags}
+							items={["VSCode", "Figma", "After Effects", "Premiere Pro", "Photoshop", "Illustrator", "Lightroom", "InDesign"]}
+						/>
 					</div>
 				</div>
 

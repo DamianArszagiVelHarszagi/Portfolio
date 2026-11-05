@@ -1,0 +1,14 @@
+.tags {
+	line-height: 1.6;
+	letter-spacing: 0.04em;
+	color: rgba(245, 245, 245, 0.7);
+}
+
+.tag {
+	white-space: nowrap;
+}
+
+.separator {
+	margin: 0 0.6em;
+	color: rgba(245, 245, 245, 0.3);
+}

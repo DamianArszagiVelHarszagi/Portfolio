@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import AnimatedTitle from "../components/AnimatedTitle";
+import Tags from "../components/Tags";
 import styles from "./Project.module.css";
 
 const TYPES = {
@@ -94,12 +95,8 @@ export default function Project() {
 							)}
 							<div className={styles.detail}>
 								<dt>Tools</dt>
-								<dd className={styles.pills}>
-									{project.tools.map((tool) => (
-										<span className={styles.pill} key={tool}>
-											{tool}
-										</span>
-									))}
+								<dd>
+									<Tags items={project.tools} />
 								</dd>
 							</div>
 						</dl>

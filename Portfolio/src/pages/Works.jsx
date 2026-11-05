@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import Tags from "../components/Tags";
 import styles from "./Works.module.css";
 
 const TECHNOLOGY_GROUPS = [
@@ -167,13 +168,7 @@ function ProjectText({ project, index, count, Heading }) {
 			<Heading className={styles.title}>{project.title}</Heading>
 			<p className={styles.category}>{project.category}</p>
 			<p className={styles.description}>{project.description}</p>
-			<div className={styles.pills}>
-				{project.tools.map((tool) => (
-					<span className={styles.pill} key={tool}>
-						{tool}
-					</span>
-				))}
-			</div>
+			<Tags items={project.tools} className={styles.tags} />
 		</>
 	);
 }
