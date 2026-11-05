@@ -1,33 +1,52 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Tags from "../components/Tags";
 import styles from "./Works.module.css";
 
 const TECHNOLOGY_GROUPS = [
 	{
-		key: "fullStack",
-		label: "Full Stack",
-		path: "/works/full-stack",
+		key: "react",
+		label: "React",
+		path: "/works/react",
 		description:
-			"Full stack projects by Damian Arszagi, from management apps to interactive maps, built with Vue.js, Kotlin, Spring Boot, and Node.js.",
+			"React projects by Damian Arszagi, including interactive map apps and websites built with React and TypeScript.",
 	},
 	{
-		key: "frontEnd",
-		label: "Front End",
-		path: "/works/front-end",
+		key: "laravel",
+		label: "Laravel",
+		path: "/works/laravel",
 		description:
-			"Front end projects by Damian Arszagi, including client websites and interactive React apps with maps, TypeScript, and custom designs.",
+			"Laravel projects by Damian Arszagi, featuring APIs, database relationships, authentication, and admin tools.",
 	},
 	{
-		key: "backEnd",
-		label: "Back End",
-		path: "/works/back-end",
+		key: "design",
+		label: "Design",
+		path: "/works/design",
 		description:
-			"Back end projects by Damian Arszagi built with Laravel and PHP, featuring APIs, database relationships, authentication, and admin tools.",
+			"Design projects by Damian Arszagi, from Figma redesigns to app concepts.",
+	},
+	{
+		key: "others",
+		label: "Others",
+		path: "/works/others",
+		description:
+			"Other projects by Damian Arszagi, from a Vue.js and Spring Boot management app to an interactive Node.js map.",
 	},
 ];
 
-export default function Works({ categoryKey = "fullStack" }) {
+// React and Laravel come from the tools, Design from the type in the backend
+function inGroup(project, key) {
+	const isReact = project.tools.includes("React.js");
+	const isLaravel = project.tools.includes("Laravel");
+	const isDesign = project.type === "design";
+
+	if (key === "react") return isReact;
+	if (key === "laravel") return isLaravel;
+	if (key === "design") return isDesign;
+	return !isReact && !isLaravel && !isDesign;
+}
+
+export default function Works({ categoryKey = "react" }) {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isChanging, setIsChanging] = useState(false);
 
@@ -43,8 +62,8 @@ export default function Works({ categoryKey = "fullStack" }) {
 	const activeCategory =
 		TECHNOLOGY_GROUPS.find((group) => group.key === categoryKey) ??
 		TECHNOLOGY_GROUPS[0];
-	const projects = allProjects.filter(
-		(item) => item.type === activeCategory.key,
+	const projects = allProjects.filter((item) =>
+		inGroup(item, activeCategory.key),
 	);
 
 	useEffect(() => {
@@ -82,8 +101,6 @@ export default function Works({ categoryKey = "fullStack" }) {
 	}, [allProjects, categoryKey]);
 
 	const project = projects[activeIndex] ?? projects[0];
-
-	if (!project) return null;
 
 	return (
 		<section className={styles.works}>
@@ -129,16 +146,21 @@ export default function Works({ categoryKey = "fullStack" }) {
 						<p>Works</p>
 					</div>
 					<div className={styles.technologyButtons}>
-						{TECHNOLOGY_GROUPS.map((group) => (
-							<NavLink
-								to={group.path}
-								key={group.key}
-								className={({ isActive }) =>
-									`${styles.technologyLink} ${isActive ? styles.technologyLinkActive : ""}`
-								}
-							>
-								{group.label}
-							</NavLink>
+						{/* REACT - LARAVEL - DESIGN, the last one (OTHERS) sits on the right */}
+						{TECHNOLOGY_GROUPS.map((group, i) => (
+							<Fragment key={group.key}>
+								{i > 0 && i < TECHNOLOGY_GROUPS.length - 1 && (
+									<span className={styles.technologySeparator}>-</span>
+								)}
+								<NavLink
+									to={group.path}
+									className={({ isActive }) =>
+										`${styles.technologyLink} ${isActive ? styles.technologyLinkActive : ""}`
+									}
+								>
+									{group.label}
+								</NavLink>
+							</Fragment>
 						))}
 					</div>
 				</div>
@@ -146,12 +168,14 @@ export default function Works({ categoryKey = "fullStack" }) {
 				<div
 					className={`${styles.infoBody} ${isChanging ? styles.isChanging : ""}`}
 				>
-					<ProjectText
-						project={project}
-						index={activeIndex}
-						count={projects.length}
-						Heading="h1"
-					/>
+					{project && (
+						<ProjectText
+							project={project}
+							index={activeIndex}
+							count={projects.length}
+							Heading="h1"
+						/>
+					)}
 				</div>
 			</aside>
 		</section>

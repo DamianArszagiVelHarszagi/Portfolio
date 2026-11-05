@@ -53,18 +53,22 @@ function App() {
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/works" element={<Navigate to="/works/full-stack" replace />} />
+            <Route path="/works" element={<Navigate to="/works/react" replace />} />
             <Route
-              path="/works/full-stack"
-              element={<Works key="fullStack" categoryKey="fullStack" />}
+              path="/works/react"
+              element={<Works key="react" categoryKey="react" />}
             />
             <Route
-              path="/works/front-end"
-              element={<Works key="frontEnd" categoryKey="frontEnd" />}
+              path="/works/laravel"
+              element={<Works key="laravel" categoryKey="laravel" />}
             />
             <Route
-              path="/works/back-end"
-              element={<Works key="backEnd" categoryKey="backEnd" />}
+              path="/works/design"
+              element={<Works key="design" categoryKey="design" />}
+            />
+            <Route
+              path="/works/others"
+              element={<Works key="others" categoryKey="others" />}
             />
             <Route path="/works/:slug" element={<Project />} />
             <Route path="/contact" element={<Contact />} />

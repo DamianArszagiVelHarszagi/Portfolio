@@ -110,9 +110,20 @@
 .technologyButtons {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 22px;
+	align-items: center;
+	gap: 14px;
 	margin-top: 18px;
 	pointer-events: auto;
+}
+
+.technologySeparator {
+	padding-bottom: 7px;
+	font-size: 13px;
+	color: rgba(245, 245, 245, 0.3);
+}
+
+.technologyLink:last-child {
+	margin-left: auto;
 }
 
 .technologyLink {
@@ -288,7 +299,7 @@
 	}
 
 	.technologyButtons {
-		gap: 18px;
+		gap: 12px;
 	}
 
 	.technologyLink {

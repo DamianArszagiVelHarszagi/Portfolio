@@ -30,10 +30,10 @@ class ProjectForm
                     ->required(),
                 Select::make('type')
                     ->options([
-                        'fullStack' => 'Full Stack',
-                        'frontEnd' => 'Front End',
-                        'backEnd' => 'Back End',
+                        'development' => 'Development',
+                        'design' => 'Design',
                     ])
+                    ->helperText('React and Laravel filters come from the tools list.')
                     ->required(),
                 Textarea::make('description')
                     ->required()

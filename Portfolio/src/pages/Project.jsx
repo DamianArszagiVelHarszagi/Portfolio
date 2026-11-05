@@ -5,11 +5,20 @@ import AnimatedTitle from "../components/AnimatedTitle";
 import Tags from "../components/Tags";
 import styles from "./Project.module.css";
 
-const TYPES = {
-	fullStack: { label: "Full Stack", path: "/works/full-stack" },
-	frontEnd: { label: "Front End", path: "/works/front-end" },
-	backEnd: { label: "Back End", path: "/works/back-end" },
+const GROUPS = {
+	react: { label: "React", path: "/works/react" },
+	laravel: { label: "Laravel", path: "/works/laravel" },
+	design: { label: "Design", path: "/works/design" },
+	others: { label: "Others", path: "/works/others" },
 };
+
+// same order as the filter on the Work page
+function getGroup(project) {
+	if (project.tools.includes("React.js")) return "react";
+	if (project.tools.includes("Laravel")) return "laravel";
+	if (project.type === "design") return "design";
+	return "others";
+}
 
 const fadeUp = {
 	initial: { opacity: 0, y: 22 },
@@ -33,10 +42,10 @@ export default function Project() {
 	const project = projects.find((p) => p.slug === slug);
 	if (!project) return null;
 
-	const type = TYPES[project.type];
-	const sameType = projects.filter((p) => p.type === project.type);
-	const number = String(sameType.indexOf(project) + 1).padStart(2, "0");
-	const count = String(sameType.length).padStart(2, "0");
+	const group = GROUPS[getGroup(project)];
+	const sameGroup = projects.filter((p) => getGroup(p) === getGroup(project));
+	const number = String(sameGroup.indexOf(project) + 1).padStart(2, "0");
+	const count = String(sameGroup.length).padStart(2, "0");
 
 	return (
 		<article className={styles.project}>
@@ -44,7 +53,7 @@ export default function Project() {
 			<meta name="description" content={project.description} />
 
 			<div className={styles.topBar}>
-				<Link to={type.path} className={styles.back}>
+				<Link to={group.path} className={styles.back}>
 					{"←"} Works
 				</Link>
 				<p className={styles.counter}>
@@ -56,7 +65,7 @@ export default function Project() {
 
 			<motion.div variants={fadeUp} initial="initial" animate="animate">
 				<p className={styles.subtitle}>
-					{project.category} / {type.label}
+					{project.category} / {group.label}
 				</p>
 
 				<div className={styles.intro}>
