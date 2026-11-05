@@ -134,8 +134,6 @@ export default function Home() {
 						<div className={styles.pills}>
 							<span className={styles.pill}>React.js</span>
 							<span className={styles.pill}>Javascript</span>
-							<span className={styles.pill}>HTML</span>
-							<span className={styles.pill}>CSS</span>
 							<span className={styles.pill}>Bootstrap</span>
 							<span className={styles.pill}>Motion</span>
 							<span className={styles.pill}>Tailwind CSS</span>
