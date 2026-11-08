@@ -62,11 +62,11 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route
 							path="/works"
-							element={<Navigate to="/works/selected" replace />}
+							element={<Navigate to="/works/featured" replace />}
 						/>
 						<Route
-							path="/works/selected"
-							element={<Works key="selected" categoryKey="selected" />}
+							path="/works/featured"
+							element={<Works key="featured" categoryKey="featured" />}
 						/>
 						<Route
 							path="/works/react"

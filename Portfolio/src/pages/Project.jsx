@@ -11,7 +11,6 @@ const GROUPS = {
 	others: { label: "Others", path: "/works/others" },
 };
 
-// same order as the filter on the Work page
 function getGroup(project) {
 	if (project.tools.includes("React.js")) return "react";
 	if (project.tools.includes("Laravel")) return "laravel";
@@ -42,11 +41,13 @@ export default function Project() {
 
 	const group = GROUPS[getGroup(project)];
 	const sameGroup = projects.filter((p) => getGroup(p) === getGroup(project));
-	const number = String(sameGroup.indexOf(project) + 1).padStart(2, "0");
+	const position = sameGroup.indexOf(project);
+	const number = String(position + 1).padStart(2, "0");
 	const count = String(sameGroup.length).padStart(2, "0");
+	const next = sameGroup[(position + 1) % sameGroup.length];
 
 	return (
-		<article className={styles.project}>
+		<article className={styles.project} key={project.slug}>
 			<title>{`${project.title} | Damian Arszagi`}</title>
 			<meta name="description" content={project.description} />
 
@@ -125,6 +126,15 @@ export default function Project() {
 					</section>
 				</div>
 			</motion.div>
+
+			{next !== project && (
+				<Link to={`/works/${next.slug}`} className={styles.next}>
+					<span className={styles.nextLabel}>Next project</span>
+					<span className={styles.nextTitle}>
+						{next.title} <span className={styles.nextArrow}>{"→"}</span>
+					</span>
+				</Link>
+			)}
 		</article>
 	);
 }
