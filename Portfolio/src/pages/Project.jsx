@@ -8,7 +8,6 @@ import styles from "./Project.module.css";
 const GROUPS = {
 	react: { label: "React", path: "/works/react" },
 	laravel: { label: "Laravel", path: "/works/laravel" },
-	design: { label: "Design", path: "/works/design" },
 	others: { label: "Others", path: "/works/others" },
 };
 
@@ -16,7 +15,6 @@ const GROUPS = {
 function getGroup(project) {
 	if (project.tools.includes("React.js")) return "react";
 	if (project.tools.includes("Laravel")) return "laravel";
-	if (project.type === "design") return "design";
 	return "others";
 }
 

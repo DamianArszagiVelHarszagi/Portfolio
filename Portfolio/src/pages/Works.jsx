@@ -19,13 +19,6 @@ const TECHNOLOGY_GROUPS = [
 			"Laravel projects by Damian Arszagi, featuring APIs, database relationships, authentication, and admin tools.",
 	},
 	{
-		key: "design",
-		label: "Design",
-		path: "/works/design",
-		description:
-			"Design projects by Damian Arszagi, from Figma redesigns to app concepts.",
-	},
-	{
 		key: "others",
 		label: "Others",
 		path: "/works/others",
@@ -34,16 +27,14 @@ const TECHNOLOGY_GROUPS = [
 	},
 ];
 
-// React and Laravel come from the tools, Design from the type in the backend
+// React and Laravel come from the tools, the rest goes under Others
 function inGroup(project, key) {
 	const isReact = project.tools.includes("React.js");
 	const isLaravel = project.tools.includes("Laravel");
-	const isDesign = project.type === "design";
 
 	if (key === "react") return isReact;
 	if (key === "laravel") return isLaravel;
-	if (key === "design") return isDesign;
-	return !isReact && !isLaravel && !isDesign;
+	return !isReact && !isLaravel;
 }
 
 export default function Works({ categoryKey = "react" }) {
@@ -146,7 +137,7 @@ export default function Works({ categoryKey = "react" }) {
 						<p>Works</p>
 					</div>
 					<div className={styles.technologyButtons}>
-						{/* REACT - LARAVEL - DESIGN, the last one (OTHERS) sits on the right */}
+						{/* REACT - LARAVEL, the last one (OTHERS) sits on the right */}
 						{TECHNOLOGY_GROUPS.map((group, i) => (
 							<Fragment key={group.key}>
 								{i > 0 && i < TECHNOLOGY_GROUPS.length - 1 && (
