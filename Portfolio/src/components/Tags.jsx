@@ -1,6 +1,5 @@
 import styles from "./Tags.module.css";
 
-// plain text list, "React.js / Laravel / PHP"
 export default function Tags({ items, className = "" }) {
 	return (
 		<p className={`${styles.tags} ${className}`}>

@@ -35,7 +35,7 @@ export default function MainLayout() {
 					/>
 				)}
 				<Outlet />
-				<Footer />
+				{location.pathname !== '/' && <Footer />}
 			</main>
 		</div>
 	);

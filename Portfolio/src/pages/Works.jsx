@@ -34,7 +34,6 @@ const TECHNOLOGY_GROUPS = [
 	},
 ];
 
-// React and Laravel come from the tools, the rest goes under Others
 function inGroup(project, key) {
 	const isReact = project.tools.includes("React.js");
 	const isLaravel = project.tools.includes("Laravel");
@@ -45,7 +44,6 @@ function inGroup(project, key) {
 }
 
 export default function Works({ categoryKey = "featured" }) {
-	// null = still loading
 	const [allProjects, setAllProjects] = useState(null);
 
 	useEffect(() => {
@@ -75,7 +73,6 @@ export default function Works({ categoryKey = "featured" }) {
 				<FilterBar tabs={TECHNOLOGY_GROUPS} />
 			</header>
 
-			{/* featured stays empty for now, own design coming */}
 			{activeCategory.key !== "featured" && (
 				<ProjectsGrid projects={projects} />
 			)}

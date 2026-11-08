@@ -1,8 +1,15 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import Tags from "../components/Tags";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import FeaturedProject from "../components/FeaturedProject";
+import HeroTiles from "../components/HeroTiles";
+import SiteFooter from "../components/SiteFooter";
 import styles from "./Home.module.css";
-import photo from "../assets/me_picture.jpg";
+
+const FEATURED_SLUG = "ing-arena";
+
+const HERO_SLUGS = ["tankcalc", "director-dna", "polish-institute-brussels"];
+
+const SKILLS = ["React", "Laravel", "Tailwind CSS", "Motion"];
 
 const nameContainer = {
 	initial: {},
@@ -19,151 +26,121 @@ const letterVariant = {
 	},
 };
 
-const fadeUp = {
-	initial: { opacity: 0, y: 22 },
-	animate: {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 1.5, ease: [0.4, 1, 0.36, 1] },
-	},
-};
-
 export default function Home() {
-	const sectionRef = useRef(null);
+	const reduceMotion = useReducedMotion();
+	const [projects, setProjects] = useState(null);
 
-	const { scrollYProgress } = useScroll({
-		target: sectionRef,
-		offset: ["start end", "end start"],
-	});
+	useEffect(() => {
+		fetch(`${import.meta.env.VITE_API_URL}/api/projects`)
+			.then((res) => res.json())
+			.then((json) => setProjects(json.data))
+			.catch(() => setProjects([]));
+	}, []);
 
-	const photoY = useTransform(scrollYProgress, [0, 1], ["35px", "-35px"]);
+	const featured = projects?.find((p) => p.slug === FEATURED_SLUG);
+	const heroProjects = projects
+		? HERO_SLUGS.map((slug) => projects.find((p) => p.slug === slug)).filter(
+				Boolean,
+			)
+		: null;
+
+	const fadeUp = {
+		initial: { opacity: 0, y: reduceMotion ? 0 : 22 },
+		animate: { opacity: 1, y: 0 },
+		transition: { duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] },
+	};
+
+	const reveal = {
+		initial: { opacity: 0, y: reduceMotion ? 0 : 30 },
+		whileInView: { opacity: 1, y: 0 },
+		viewport: { once: true, amount: 0.3 },
+		transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+	};
 
 	return (
-		<div className={styles.home}>
+		<div className={styles.home} id="top">
 			<title>Damian Arszagi | Web Developer Portfolio</title>
 			<meta
 				name="description"
-				content="Portfolio of Damian Arszagi, web developer and Multimedia & Creative Technology student in Brussels, focused on frontend development with React."
+				content="Portfolio of Damian Arszagi, web developer and designer in Brussels and final-year Multimedia & Creative Technology student."
 			/>
-			<div className={styles.topSection}>
-				<div className={styles.hero}>
-					<div className={styles.nameBlock}>
-						<motion.h1
-							className={styles.name}
-							variants={nameContainer}
-							initial="initial"
-							animate="animate"
-						>
-							{"DAMIAN".split("").map((letter, i) => (
-								<motion.span
-									key={`d${i}`}
-									className={styles.letter}
-									variants={letterVariant}
-								>
-									{letter}
-								</motion.span>
-							))}
-							<br />
-							{"ARSZAGI".split("").map((letter, i) => (
-								<motion.span
-									key={`a${i}`}
-									className={styles.letter}
-									variants={letterVariant}
-								>
-									{letter}
-								</motion.span>
-							))}
-						</motion.h1>
-						<p className={styles.role}>Web Developer</p>
-					</div>
+
+			<section className={styles.hero}>
+				<div className={styles.intro}>
+					<motion.h1
+						className={styles.name}
+						variants={nameContainer}
+						initial={reduceMotion ? "animate" : "initial"}
+						animate="animate"
+					>
+						{"DAMIAN".split("").map((letter, i) => (
+							<motion.span
+								key={`d${i}`}
+								className={styles.letter}
+								variants={letterVariant}
+							>
+								{letter}
+							</motion.span>
+						))}
+						<br />
+						{"ARSZAGI".split("").map((letter, i) => (
+							<motion.span
+								key={`a${i}`}
+								className={styles.letter}
+								variants={letterVariant}
+							>
+								{letter}
+							</motion.span>
+						))}
+					</motion.h1>
+
+					<motion.p className={styles.role} {...fadeUp}>
+						Web developer, based in Brussels
+					</motion.p>
 				</div>
 
-				<motion.div
-					className={styles.about}
-					variants={fadeUp}
-					initial="initial"
-					animate="animate"
-				>
-					<h2 className={styles.aboutTitle}>ABOUT ME</h2>
-					<div className={styles.aboutLine} />
-					<div className={styles.aboutText}>
-						<p>
-							I am currently in my final year of the Bachelor of Multimedia &
-							Creative Technology at Erasmus University College Brussels. My
-							main focus is on web development, and I have worked on several
-							creative and technical projects. I enjoy building interactive
-							experiences and exploring new technologies. Outside of
-							programming, my interests include video creation, playing
-							football, and boxing
-						</p>
-					</div>
-				</motion.div>
-			</div>
-			<div className={styles.motivationSection}>
-				<div className={styles.motivationText}>
-					<h2 className={styles.motivationTitle}>MOTIVATION</h2>
-					<div className={styles.motivationLine} />
-					<div className={styles.motivationParagraphs}>
-						<p>
-							I'm driven by turning ideas into real, interactive experiences. I
-							have a strong interest in frontend development, where I combine
-							logic and creativity, while also exploring backend to better
-							understand how everything connects. My goal is to grow into a
-							well-rounded developer who builds meaningful digital products.
-						</p>
-					</div>
+				<div className={styles.tiles}>
+					<HeroTiles projects={heroProjects} />
 				</div>
 
-				<div className={styles.photoWrapper} ref={sectionRef}>
-					<motion.img
-						src={photo}
-						alt="Damian Arszagi"
-						className={styles.parallaxPhoto}
-						decoding="async"
-						fetchPriority="high"
-						style={{ y: photoY }}
-					/>
-				</div>
-			</div>
-			<div className={styles.skillsSection}>
-				<h2 className={styles.skillsTitle}>SKILLS</h2>
-				<div className={styles.skillsDivider} />
+				<motion.a href="#featured" className={styles.scrollLink} {...fadeUp}>
+					Featured project <span>{"↓"}</span>
+				</motion.a>
+			</section>
 
-				<div className={styles.skillsGrid}>
-					<div className={styles.skillsColumn}>
-						<p className={styles.columnTitle}>FRONTEND</p>
-						<Tags
-							className={styles.tags}
-							items={["React.js", "Javascript", "Bootstrap", "Motion", "Tailwind CSS", "Typescript", "Vue.js"]}
-						/>
-					</div>
+			{(projects === null || featured) && (
+				<FeaturedProject project={featured ?? null} />
+			)}
 
-					<div className={styles.skillsColumn}>
-						<p className={styles.columnTitle}>BACKEND</p>
-						<Tags
-							className={styles.tags}
-							items={["Node.js", "Kotlin", "Spring Boot", "Express.js", "Laravel", "PHP", "SQL"]}
-						/>
-					</div>
+			<section className={styles.section}>
+				<h2 className={styles.sectionLabel}>
+					About
+				</h2>
+				<motion.p className={styles.aboutText} {...reveal}>
+					I'm a final-year Multimedia & Creative Technology student at Erasmus
+					University College Brussels. I build for the web because I like seeing
+					an idea turn into something people can click, scroll and use. I care
+					about how it looks and just as much about what happens behind it, and
+					my goal is to become a developer who can carry a product from first
+					sketch to launch. Off screen: football, boxing and making videos.
+				</motion.p>
+			</section>
 
-					<div className={styles.skillsColumn}>
-						<p className={styles.columnTitle}>TOOLS</p>
-						<Tags
-							className={styles.tags}
-							items={["VSCode", "Figma", "After Effects", "Premiere Pro", "Photoshop", "Illustrator", "Lightroom", "InDesign"]}
-						/>
-					</div>
-				</div>
+			<section className={styles.section}>
+				<h2 className={styles.sectionLabel}>
+					Skills
+				</h2>
 
-				<div className={styles.skillsLinks}>
-					<a href="/works" className={styles.skillsLink}>
-						WORKS {"\u2192"}
-					</a>
-					<a href="/contact" className={styles.skillsLink}>
-						CONTACT {"\u2192"}
-					</a>
-				</div>
-			</div>
+				<motion.ul className={styles.skills} {...reveal}>
+					{SKILLS.map((skill) => (
+						<li key={skill} className={styles.skill}>
+							{skill}
+						</li>
+					))}
+				</motion.ul>
+			</section>
+
+			<SiteFooter />
 		</div>
 	);
 }

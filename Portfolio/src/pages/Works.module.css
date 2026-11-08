@@ -12,9 +12,8 @@
 	margin-bottom: 64px;
 }
 
-/* type scale on this page: 42 page title / 28 project title / 17 text / 12 labels */
 .title {
-	font-size: clamp(32px, 3vw, 42px);
+	font-size: 262.5%;
 	font-weight: 300;
 	line-height: 1;
 	letter-spacing: 0.08em;

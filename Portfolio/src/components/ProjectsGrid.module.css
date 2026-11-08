@@ -10,7 +10,6 @@
 	color: rgba(245, 245, 245, 0.6);
 }
 
-/* ── Loading skeleton, same shape as a card ── */
 .skeleton {
 	display: flex;
 	flex-direction: column;
