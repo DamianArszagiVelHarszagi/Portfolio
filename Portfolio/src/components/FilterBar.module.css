@@ -6,11 +6,16 @@
 .tab {
 	position: relative;
 	padding: 4px 0 8px;
-	font-size: 12px;
+	font-size: 13px;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
-	color: rgba(245, 245, 245, 0.45);
+	color: rgba(245, 245, 245, 0.55);
 	transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* last tab (Others) sits all the way on the right */
+.tab:last-child {
+	margin-left: auto;
 }
 
 .tab:hover,

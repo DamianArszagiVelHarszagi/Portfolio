@@ -11,7 +11,8 @@ function GitHubIcon() {
 	);
 }
 
-export default function ProjectCard({ project, index }) {
+// delay: stagger for the second card in a row
+export default function ProjectCard({ project, index, delay = 0 }) {
 	const reduceMotion = useReducedMotion();
 	const number = String(index + 1).padStart(2, "0");
 	const externalUrl = project.github_url || project.live_url;
@@ -22,12 +23,7 @@ export default function ProjectCard({ project, index }) {
 			initial={{ opacity: 0, y: reduceMotion ? 0 : 30 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, amount: 0.2 }}
-			transition={{
-				duration: 0.6,
-				ease: [0.22, 1, 0.36, 1],
-				// second card in a row comes in slightly later
-				delay: (index % 2) * 0.1,
-			}}
+			transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }}
 		>
 			<div className={styles.meta}>
 				<span className={styles.number}>{number}</span>

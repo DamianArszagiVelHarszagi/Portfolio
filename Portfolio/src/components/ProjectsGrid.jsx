@@ -11,7 +11,13 @@ export default function ProjectsGrid({ projects }) {
 		<div className={styles.grid} aria-busy={!projects}>
 			{projects
 				? projects.map((project, i) => (
-						<ProjectCard key={project.slug} project={project} index={i} />
+						<ProjectCard
+							key={project.slug}
+							project={project}
+							index={i}
+							// right card in a row comes in slightly later
+							delay={(i % 2) * 0.1}
+						/>
 					))
 				: [0, 1].map((i) => (
 						<div key={i} className={styles.skeleton} aria-hidden="true">

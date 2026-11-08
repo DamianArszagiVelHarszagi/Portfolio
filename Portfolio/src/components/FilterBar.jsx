@@ -2,17 +2,11 @@ import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import styles from "./FilterBar.module.css";
 
-const TABS = [
-	{ label: "React", path: "/works/react" },
-	{ label: "Laravel", path: "/works/laravel" },
-	{ label: "Others", path: "/works/others" },
-];
-
-// NavLink sets aria-current="page" on the active tab by itself
-export default function FilterBar() {
+// tabs: [{ label, path }], NavLink sets aria-current="page" on the active one
+export default function FilterBar({ tabs }) {
 	return (
 		<nav className={styles.bar} aria-label="Filter projects">
-			{TABS.map((tab) => (
+			{tabs.map((tab) => (
 				<NavLink
 					key={tab.path}
 					to={tab.path}

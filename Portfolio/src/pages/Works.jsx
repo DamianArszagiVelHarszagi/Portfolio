@@ -1,9 +1,16 @@
-import { Fragment, useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import Tags from "../components/Tags";
+import { useEffect, useState } from "react";
+import AnimatedTitle from "../components/AnimatedTitle";
+import FilterBar from "../components/FilterBar";
+import ProjectsGrid from "../components/ProjectsGrid";
 import styles from "./Works.module.css";
 
 const TECHNOLOGY_GROUPS = [
+	{
+		key: "selected",
+		label: "Selected",
+		path: "/works/selected",
+		description: "Selected work by Damian Arszagi.",
+	},
 	{
 		key: "react",
 		label: "React",
@@ -23,7 +30,7 @@ const TECHNOLOGY_GROUPS = [
 		label: "Others",
 		path: "/works/others",
 		description:
-			"Other projects by Damian Arszagi, from a Vue.js and Spring Boot management app to an interactive Node.js map.",
+			"Other projects by Damian Arszagi, from a Vue.js and Spring Boot management app to client websites and interactive Node.js maps.",
 	},
 ];
 
@@ -37,153 +44,41 @@ function inGroup(project, key) {
 	return !isReact && !isLaravel;
 }
 
-export default function Works({ categoryKey = "react" }) {
-	const [activeIndex, setActiveIndex] = useState(0);
-	const [isChanging, setIsChanging] = useState(false);
+export default function Works({ categoryKey = "selected" }) {
+	// null = still loading
+	const [allProjects, setAllProjects] = useState(null);
 
-	const [allProjects, setAllProjects] = useState([]);
 	useEffect(() => {
 		fetch(`${import.meta.env.VITE_API_URL}/api/projects`)
 			.then((res) => res.json())
-			.then((json) => setAllProjects(json.data));
+			.then((json) => setAllProjects(json.data))
+			.catch(() => setAllProjects([]));
 	}, []);
-	const sectionRefs = useRef([]);
-	const activeIndexRef = useRef(0);
-	const fadeTimeoutRef = useRef(null);
+
 	const activeCategory =
 		TECHNOLOGY_GROUPS.find((group) => group.key === categoryKey) ??
 		TECHNOLOGY_GROUPS[0];
-	const projects = allProjects.filter((item) =>
-		inGroup(item, activeCategory.key),
-	);
-
-	useEffect(() => {
-		function changeActive(index) {
-			if (activeIndexRef.current === index) return;
-
-			clearTimeout(fadeTimeoutRef.current);
-			activeIndexRef.current = index;
-			setIsChanging(true);
-
-			fadeTimeoutRef.current = setTimeout(() => {
-				setActiveIndex(index);
-				setIsChanging(false);
-			}, 180);
-		}
-
-		// only the section crossing the middle of the screen counts as intersecting
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						changeActive(sectionRefs.current.indexOf(entry.target));
-					}
-				});
-			},
-			{ rootMargin: "-50% 0px -50% 0px" },
-		);
-
-		sectionRefs.current.forEach((el) => el && observer.observe(el));
-
-		return () => {
-			observer.disconnect();
-			clearTimeout(fadeTimeoutRef.current);
-		};
-	}, [allProjects, categoryKey]);
-
-	const project = projects[activeIndex] ?? projects[0];
+	const projects = allProjects
+		? allProjects.filter((item) => inGroup(item, activeCategory.key))
+		: null;
 
 	return (
-		<section className={styles.works}>
+		<section className={styles.page}>
 			<title>{`${activeCategory.label} Projects | Damian Arszagi`}</title>
 			<meta name="description" content={activeCategory.description} />
-			<div className={styles.mediaRail}>
-				{projects.map((p, i) => (
-					<article
-						key={p.title}
-						className={styles.projectSection}
-						ref={(el) => (sectionRefs.current[i] = el)}
-					>
-						<Link to={`/works/${p.slug}`} className={styles.projectImage}>
-							<img
-								src={p.image}
-								alt={p.alt}
-								className={styles.projectPhoto}
-								loading={i === 0 ? "eager" : "lazy"}
-								decoding="async"
-								fetchPriority={i === 0 ? "high" : "auto"}
-							/>
-						</Link>
 
-						{/* only visible on mobile, desktop uses the fixed panel */}
-						<div className={styles.cardInfo}>
-							<ProjectText
-								project={p}
-								index={i}
-								count={projects.length}
-								Heading="h2"
-							/>
-							<Link to={`/works/${p.slug}`} className={styles.viewLink}>
-								View project {"\u2192"}
-							</Link>
-						</div>
-					</article>
-				))}
-			</div>
+			<header className={styles.header}>
+				<AnimatedTitle
+					text={`${activeCategory.label} Projects`}
+					className={styles.title}
+				/>
+				<FilterBar tabs={TECHNOLOGY_GROUPS} />
+			</header>
 
-			<aside className={styles.projectInfo}>
-				<div className={styles.infoHeader}>
-					<div className={styles.infoHeaderTop}>
-						<p>Works</p>
-					</div>
-					<div className={styles.technologyButtons}>
-						{/* REACT - LARAVEL, the last one (OTHERS) sits on the right */}
-						{TECHNOLOGY_GROUPS.map((group, i) => (
-							<Fragment key={group.key}>
-								{i > 0 && i < TECHNOLOGY_GROUPS.length - 1 && (
-									<span className={styles.technologySeparator}>-</span>
-								)}
-								<NavLink
-									to={group.path}
-									className={({ isActive }) =>
-										`${styles.technologyLink} ${isActive ? styles.technologyLinkActive : ""}`
-									}
-								>
-									{group.label}
-								</NavLink>
-							</Fragment>
-						))}
-					</div>
-				</div>
-
-				<div
-					className={`${styles.infoBody} ${isChanging ? styles.isChanging : ""}`}
-				>
-					{project && (
-						<ProjectText
-							project={project}
-							index={activeIndex}
-							count={projects.length}
-							Heading="h1"
-						/>
-					)}
-				</div>
-			</aside>
+			{/* selected stays empty for now, own design coming */}
+			{activeCategory.key !== "selected" && (
+				<ProjectsGrid projects={projects} />
+			)}
 		</section>
-	);
-}
-
-function ProjectText({ project, index, count, Heading }) {
-	return (
-		<>
-			<p className={styles.counter}>
-				[ {String(index + 1).padStart(2, "0")} /{" "}
-				{String(count).padStart(2, "0")} ]
-			</p>
-			<Heading className={styles.title}>{project.title}</Heading>
-			<p className={styles.category}>{project.category}</p>
-			<p className={styles.description}>{project.description}</p>
-			<Tags items={project.tools} className={styles.tags} />
-		</>
 	);
 }

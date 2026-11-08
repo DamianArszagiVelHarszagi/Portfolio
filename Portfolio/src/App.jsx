@@ -10,7 +10,6 @@ import {
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Works from "./pages/Works";
-import OtherWorks from "./pages/OtherWorks";
 import Contact from "./pages/Contact";
 import Project from "./pages/Project";
 import SplashCursor from "./components/SplashCursor";
@@ -63,7 +62,11 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route
 							path="/works"
-							element={<Navigate to="/works/react" replace />}
+							element={<Navigate to="/works/selected" replace />}
+						/>
+						<Route
+							path="/works/selected"
+							element={<Works key="selected" categoryKey="selected" />}
 						/>
 						<Route
 							path="/works/react"
@@ -73,7 +76,10 @@ function App() {
 							path="/works/laravel"
 							element={<Works key="laravel" categoryKey="laravel" />}
 						/>
-						<Route path="/works/others" element={<OtherWorks />} />
+						<Route
+							path="/works/others"
+							element={<Works key="others" categoryKey="others" />}
+						/>
 						<Route path="/works/:slug" element={<Project />} />
 						<Route path="/contact" element={<Contact />} />
 					</Route>

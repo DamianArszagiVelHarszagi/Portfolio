@@ -35,11 +35,13 @@
 	gap: 16px;
 }
 
+/* same light, uppercase style as the titles on the other pages */
 .title {
-	font-size: clamp(26px, 2.4vw, 38px);
-	font-weight: 600;
-	line-height: 1.1;
-	letter-spacing: 0.01em;
+	font-size: clamp(22px, 2vw, 28px);
+	font-weight: 300;
+	line-height: 1.15;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
 }
 
 .cardLink::after {
@@ -66,7 +68,7 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
-	font-size: 13px;
+	font-size: 12px;
 	color: rgba(245, 245, 245, 0.8);
 	border: 1px solid rgba(245, 245, 245, 0.2);
 	border-radius: 999px;
@@ -94,10 +96,12 @@
 	border-color: rgba(245, 245, 245, 0.2);
 }
 
+/* text and image share the same left edge (8% padding) */
 .panel {
-	position: relative;
-	aspect-ratio: 5 / 4;
-	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	padding: 7% 8%;
 	border-radius: 20px;
 	background: rgba(245, 245, 245, 0.04);
 }
@@ -113,13 +117,12 @@
 		rgba(245, 245, 245, 0.04);
 }
 
+/* same size and color as the description on the project page, always 3 lines high
+   so every panel in a row has the same height */
 .description {
-	position: relative;
-	z-index: 1;
-	max-width: 85%;
-	padding: 28px 0 0 28px;
-	font-size: clamp(17px, 1.5vw, 22px);
-	line-height: 1.35;
+	min-height: calc(3 * 1.5em);
+	font-size: 17px;
+	line-height: 1.5;
 	color: rgba(245, 245, 245, 0.86);
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
@@ -127,24 +130,20 @@
 	overflow: hidden;
 }
 
-/* 16:10 mockup that runs off the bottom edge of the panel */
+/* fixed 16:9 slot, the image always fits inside it completely */
 .mockup {
-	position: absolute;
-	top: 44%;
-	left: 8%;
-	right: 8%;
-	aspect-ratio: 16 / 10;
-	overflow: hidden;
-	border-radius: 12px 12px 0 0;
-	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	aspect-ratio: 16 / 9;
 	transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mockup img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: top center;
+	max-width: 100%;
+	max-height: 100%;
+	border-radius: 10px;
+	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
 }
 
 .card:hover .mockup {
@@ -153,7 +152,7 @@
 
 @media (max-width: 560px) {
 	.description {
-		padding: 20px 0 0 20px;
+		font-size: 16px;
 	}
 
 	.frame {
@@ -162,6 +161,7 @@
 	}
 
 	.panel {
+		gap: 18px;
 		border-radius: 16px;
 	}
 }
