@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Sidebar from '../components/Sidebar';
-import Footer from '../components/Footer';
+import SiteFooter from '../components/SiteFooter';
 import styles from './MainLayout.module.css';
 
 export default function MainLayout() {
@@ -21,7 +21,7 @@ export default function MainLayout() {
 	}, [location.pathname]);
 
 	return (
-		<div className={styles.layout}>
+		<div className={styles.layout} id="top">
 			<Sidebar />
 			<main className={styles.main}>
 				{overlayVisible && (
@@ -35,7 +35,7 @@ export default function MainLayout() {
 					/>
 				)}
 				<Outlet />
-				{location.pathname !== '/' && <Footer />}
+				<SiteFooter />
 			</main>
 		</div>
 	);

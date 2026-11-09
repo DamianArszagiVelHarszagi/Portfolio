@@ -50,12 +50,17 @@ export default function FeaturedProject({ project }) {
 				>
 					{project && (
 						<>
-							<h3 className={styles.title}>{project.title}</h3>
-							<p className={styles.description}>{project.description}</p>
-							<Tags items={project.tools} className={styles.tags} />
-							<Link to={`/works/${project.slug}`} className={styles.cta}>
-								View project <span>{"→"}</span>
-							</Link>
+							<div className={styles.infoTop}>
+								<p className={styles.meta}>{project.category}</p>
+								<h3 className={styles.title}>{project.title}</h3>
+								<p className={styles.description}>{project.description}</p>
+							</div>
+							<div className={styles.infoBottom}>
+								<Tags items={project.tools} className={styles.tags} />
+								<Link to={`/works/${project.slug}`} className={styles.cta}>
+									View project <span>{"→"}</span>
+								</Link>
+							</div>
 						</>
 					)}
 				</motion.div>

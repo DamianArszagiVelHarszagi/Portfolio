@@ -14,8 +14,8 @@
 
 .layout {
 	display: grid;
-	grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-	align-items: end;
+	grid-template-columns: minmax(0, 450px) minmax(0, 1fr);
+	align-items: stretch;
 	gap: 72px;
 }
 
@@ -23,6 +23,7 @@
 	position: relative;
 	aspect-ratio: 4 / 5;
 	overflow: hidden;
+	border-radius: 28px;
 	background: rgba(245, 245, 245, 0.04);
 	border: 1px solid rgba(245, 245, 245, 0.08);
 }
@@ -56,6 +57,7 @@
 	width: 100%;
 	aspect-ratio: 16 / 9;
 	object-fit: contain;
+	border-radius: 10px;
 	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
@@ -71,13 +73,35 @@
 .info {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+	gap: 40px;
+}
+
+.infoTop,
+.infoBottom {
+	display: flex;
+	flex-direction: column;
 	align-items: flex-start;
-	gap: 24px;
-	padding-bottom: 8px;
+}
+
+.infoTop {
+	gap: 20px;
+}
+
+.infoBottom {
+	gap: 28px;
+}
+
+.meta {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 12px;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: rgba(245, 245, 245, 0.55);
 }
 
 .title {
-	font-size: 262.5%;
+	font-size: 350%;
 	font-weight: 300;
 	line-height: 1.05;
 	letter-spacing: 0.08em;
@@ -100,7 +124,6 @@
 	align-items: center;
 	gap: 14px;
 	min-height: 48px;
-	margin-top: 12px;
 	padding: 0 28px;
 	font-size: 13px;
 	letter-spacing: 0.3em;
@@ -129,17 +152,23 @@
 	}
 
 	.poster {
-		max-width: 560px;
+		max-width: 450px;
 	}
 
 	.info {
-		min-height: 260px;
+		justify-content: flex-start;
+		gap: 32px;
+		min-height: 320px;
 	}
 }
 
 @media (max-width: 820px) {
 	.featured {
 		padding: 80px 22px;
+	}
+
+	.poster {
+		border-radius: 22px;
 	}
 
 	.label {

@@ -2,12 +2,20 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import FeaturedProject from "../components/FeaturedProject";
 import HeroTiles from "../components/HeroTiles";
-import SiteFooter from "../components/SiteFooter";
 import styles from "./Home.module.css";
+import tankcalcPoster from "../assets/posters/tankcalc poster.png";
+import directorDnaPoster from "../assets/posters/director dna poster.png";
+import ingArenaPoster from "../assets/posters/ING arena poster.png";
 
 const FEATURED_SLUG = "ing-arena";
 
-const HERO_SLUGS = ["tankcalc", "director-dna", "polish-institute-brussels"];
+const HERO_SLUGS = ["tankcalc", "director-dna", "ing-arena"];
+
+const POSTERS = {
+	tankcalc: tankcalcPoster,
+	"director-dna": directorDnaPoster,
+	"ing-arena": ingArenaPoster,
+};
 
 const SKILLS = ["React", "Laravel", "Tailwind CSS", "Motion"];
 
@@ -33,7 +41,11 @@ export default function Home() {
 	useEffect(() => {
 		fetch(`${import.meta.env.VITE_API_URL}/api/projects`)
 			.then((res) => res.json())
-			.then((json) => setProjects(json.data))
+			.then((json) =>
+				setProjects(
+					json.data.map((p) => ({ ...p, poster: POSTERS[p.slug] ?? null })),
+				),
+			)
 			.catch(() => setProjects([]));
 	}, []);
 
@@ -58,7 +70,7 @@ export default function Home() {
 	};
 
 	return (
-		<div className={styles.home} id="top">
+		<div className={styles.home}>
 			<title>Damian Arszagi | Web Developer Portfolio</title>
 			<meta
 				name="description"
@@ -139,8 +151,6 @@ export default function Home() {
 					))}
 				</motion.ul>
 			</section>
-
-			<SiteFooter />
 		</div>
 	);
 }
