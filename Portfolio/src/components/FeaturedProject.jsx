@@ -1,18 +1,16 @@
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import Tags from "./Tags";
 import styles from "./FeaturedProject.module.css";
 
-export default function FeaturedProject({ project, className = "" }) {
-	const reduceMotion = useReducedMotion();
+const reveal = {
+	initial: { opacity: 0, y: 30 },
+	whileInView: { opacity: 1, y: 0 },
+	viewport: { once: true, amount: 0.2 },
+	transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+};
 
-	const reveal = {
-		initial: { opacity: 0, y: reduceMotion ? 0 : 30 },
-		whileInView: { opacity: 1, y: 0 },
-		viewport: { once: true, amount: 0.2 },
-		transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
-	};
-
+export default function FeaturedProject({ project, className }) {
 	return (
 		<section className={className} id="featured">
 			<h2 className={styles.label}>Featured project</h2>
@@ -44,7 +42,7 @@ export default function FeaturedProject({ project, className = "" }) {
 				<motion.div
 					className={styles.info}
 					{...reveal}
-					transition={{ ...reveal.transition, delay: 0.15 }}
+					transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
 				>
 					{project && (
 						<>
@@ -56,7 +54,7 @@ export default function FeaturedProject({ project, className = "" }) {
 							<div className={styles.infoBottom}>
 								<Tags items={project.tools} className={styles.tags} />
 								<Link to={`/works/${project.slug}`} className={styles.cta}>
-									View project <span>{"→"}</span>
+									View project <span>→</span>
 								</Link>
 							</div>
 						</>

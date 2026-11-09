@@ -5,10 +5,10 @@ export default function SiteFooter() {
 		<footer className={styles.footer}>
 			<p className={styles.meta}>Brussels, Belgium</p>
 			<p className={`${styles.meta} ${styles.copy}`}>
-				{"©"} {new Date().getFullYear()} Damian Arszagi
+				© {new Date().getFullYear()} Damian Arszagi
 			</p>
 			<a href="#top" className={styles.top}>
-				Back to top <span>{"↑"}</span>
+				Back to top <span>↑</span>
 			</a>
 		</footer>
 	);
