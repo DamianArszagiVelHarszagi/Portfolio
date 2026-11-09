@@ -99,10 +99,6 @@
 	background: rgba(245, 245, 245, 0.04);
 }
 
-.tags {
-	font-size: 14px;
-}
-
 .description {
 	min-height: calc(3 * 1.5em);
 	font-size: 17px;
@@ -133,6 +129,10 @@
 	transform: translateY(-6px);
 }
 
+.tags {
+	font-size: 14px;
+}
+
 @media (max-width: 560px) {
 	.title {
 		font-size: 137.5%;
@@ -150,15 +150,5 @@
 	.panel {
 		gap: 18px;
 		border-radius: 16px;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.mockup {
-		transition: none;
-	}
-
-	.card:hover .mockup {
-		transform: none;
 	}
 }

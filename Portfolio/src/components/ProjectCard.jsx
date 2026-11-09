@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import Tags from "./Tags";
 import styles from "./ProjectCard.module.css";
 
@@ -11,15 +11,15 @@ function GitHubIcon() {
 	);
 }
 
-export default function ProjectCard({ project, index, delay = 0 }) {
-	const reduceMotion = useReducedMotion();
+export default function ProjectCard({ project, index }) {
 	const number = String(index + 1).padStart(2, "0");
 	const externalUrl = project.github_url || project.live_url;
+	const delay = index % 2 === 1 ? 0.1 : 0;
 
 	return (
 		<motion.article
 			className={styles.card}
-			initial={{ opacity: 0, y: reduceMotion ? 0 : 30 }}
+			initial={{ opacity: 0, y: 30 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, amount: 0.2 }}
 			transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }}
@@ -44,8 +44,14 @@ export default function ProjectCard({ project, index, delay = 0 }) {
 						rel="noreferrer"
 						className={styles.pill}
 					>
-						{project.github_url ? <GitHubIcon /> : "↗"}
-						{project.github_url ? "GitHub" : "Live site"}
+						{project.github_url ? (
+							<>
+								<GitHubIcon />
+								GitHub
+							</>
+						) : (
+							"↗Live site"
+						)}
 					</a>
 				)}
 			</div>
