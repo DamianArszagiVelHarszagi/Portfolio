@@ -121,7 +121,10 @@ export default function Home() {
 			</section>
 
 			{(projects === null || featured) && (
-				<FeaturedProject project={featured ?? null} />
+				<FeaturedProject
+					project={featured ?? null}
+					className={styles.section}
+				/>
 			)}
 
 			<section className={styles.section}>

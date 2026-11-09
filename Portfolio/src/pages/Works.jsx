@@ -6,12 +6,6 @@ import styles from "./Works.module.css";
 
 const TECHNOLOGY_GROUPS = [
 	{
-		key: "featured",
-		label: "Featured",
-		path: "/works/featured",
-		description: "Featured work by Damian Arszagi.",
-	},
-	{
 		key: "react",
 		label: "React",
 		path: "/works/react",
@@ -43,7 +37,7 @@ function inGroup(project, key) {
 	return !isReact && !isLaravel;
 }
 
-export default function Works({ categoryKey = "featured" }) {
+export default function Works({ categoryKey = "react" }) {
 	const [allProjects, setAllProjects] = useState(null);
 
 	useEffect(() => {
@@ -73,9 +67,7 @@ export default function Works({ categoryKey = "featured" }) {
 				<FilterBar tabs={TECHNOLOGY_GROUPS} />
 			</header>
 
-			{activeCategory.key !== "featured" && (
-				<ProjectsGrid projects={projects} />
-			)}
+			<ProjectsGrid projects={projects} />
 		</section>
 	);
 }

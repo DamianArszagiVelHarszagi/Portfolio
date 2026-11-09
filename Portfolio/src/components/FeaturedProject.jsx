@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Tags from "./Tags";
 import styles from "./FeaturedProject.module.css";
 
-export default function FeaturedProject({ project }) {
+export default function FeaturedProject({ project, className = "" }) {
 	const reduceMotion = useReducedMotion();
 
 	const reveal = {
@@ -14,10 +14,8 @@ export default function FeaturedProject({ project }) {
 	};
 
 	return (
-		<section className={styles.featured} id="featured">
-			<h2 className={styles.label}>
-				Featured project
-			</h2>
+		<section className={className} id="featured">
+			<h2 className={styles.label}>Featured project</h2>
 
 			<div className={styles.layout}>
 				<motion.div className={styles.poster} {...reveal}>
