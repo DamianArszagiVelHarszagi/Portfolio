@@ -37,7 +37,7 @@ function inGroup(project, key) {
 	return !isReact && !isLaravel;
 }
 
-export default function Works({ categoryKey = "react" }) {
+export default function Works({ categoryKey }) {
 	const [allProjects, setAllProjects] = useState(null);
 
 	useEffect(() => {
@@ -47,21 +47,19 @@ export default function Works({ categoryKey = "react" }) {
 			.catch(() => setAllProjects([]));
 	}, []);
 
-	const activeCategory =
-		TECHNOLOGY_GROUPS.find((group) => group.key === categoryKey) ??
-		TECHNOLOGY_GROUPS[0];
+	const group = TECHNOLOGY_GROUPS.find((g) => g.key === categoryKey);
 	const projects = allProjects
-		? allProjects.filter((item) => inGroup(item, activeCategory.key))
+		? allProjects.filter((project) => inGroup(project, group.key))
 		: null;
 
 	return (
 		<section className={styles.page}>
-			<title>{`${activeCategory.label} Projects | Damian Arszagi`}</title>
-			<meta name="description" content={activeCategory.description} />
+			<title>{`${group.label} Projects | Damian Arszagi`}</title>
+			<meta name="description" content={group.description} />
 
 			<header className={styles.header}>
 				<AnimatedTitle
-					text={`${activeCategory.label} Projects`}
+					text={`${group.label} Projects`}
 					className={styles.title}
 				/>
 				<FilterBar tabs={TECHNOLOGY_GROUPS} />
