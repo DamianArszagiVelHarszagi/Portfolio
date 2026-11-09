@@ -88,11 +88,6 @@
 		border-radius: 12px;
 	}
 
-	.slot:nth-child(1) {
-		top: 0;
-		left: 0;
-	}
-
 	.slot:nth-child(2) {
 		top: 16%;
 		left: 29%;

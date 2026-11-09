@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import FeaturedProject from "../components/FeaturedProject";
 import HeroTiles from "../components/HeroTiles";
 import styles from "./Home.module.css";
@@ -34,43 +34,49 @@ const letterVariant = {
 	},
 };
 
+const fadeUp = {
+	initial: { opacity: 0, y: 22 },
+	animate: { opacity: 1, y: 0 },
+	transition: { duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] },
+};
+
+const reveal = {
+	initial: { opacity: 0, y: 30 },
+	whileInView: { opacity: 1, y: 0 },
+	viewport: { once: true, amount: 0.3 },
+	transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+};
+
+function letters(word) {
+	return word.split("").map((letter, i) => (
+		<motion.span key={i} className={styles.letter} variants={letterVariant}>
+			{letter}
+		</motion.span>
+	));
+}
+
 export default function Home() {
-	const reduceMotion = useReducedMotion();
 	const [projects, setProjects] = useState(null);
 
 	useEffect(() => {
 		fetch(`${import.meta.env.VITE_API_URL}/api/projects`)
 			.then((res) => res.json())
 			.then((json) =>
-				setProjects(
-					json.data.map((p) => ({ ...p, poster: POSTERS[p.slug] ?? null })),
-				),
+				setProjects(json.data.map((p) => ({ ...p, poster: POSTERS[p.slug] }))),
 			)
 			.catch(() => setProjects([]));
 	}, []);
 
-	const featured = projects?.find((p) => p.slug === FEATURED_SLUG);
-	const heroProjects = projects
-		? HERO_SLUGS.map((slug) => projects.find((p) => p.slug === slug)).filter(
-				Boolean,
-			)
-		: null;
+	let featured = null;
+	let heroProjects = null;
 
-	const fadeUp = {
-		initial: { opacity: 0, y: reduceMotion ? 0 : 22 },
-		animate: { opacity: 1, y: 0 },
-		transition: { duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] },
-	};
-
-	const reveal = {
-		initial: { opacity: 0, y: reduceMotion ? 0 : 30 },
-		whileInView: { opacity: 1, y: 0 },
-		viewport: { once: true, amount: 0.3 },
-		transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
-	};
+	if (projects) {
+		featured = projects.find((p) => p.slug === FEATURED_SLUG);
+		heroProjects = HERO_SLUGS.map((slug) => projects.find((p) => p.slug === slug));
+	}
 
 	return (
-		<div className={styles.home}>
+		<>
 			<title>Damian Arszagi | Web Developer Portfolio</title>
 			<meta
 				name="description"
@@ -85,25 +91,9 @@ export default function Home() {
 						initial="initial"
 						animate="animate"
 					>
-						{"DAMIAN".split("").map((letter, i) => (
-							<motion.span
-								key={`d${i}`}
-								className={styles.letter}
-								variants={letterVariant}
-							>
-								{letter}
-							</motion.span>
-						))}
+						{letters("DAMIAN")}
 						<br />
-						{"ARSZAGI".split("").map((letter, i) => (
-							<motion.span
-								key={`a${i}`}
-								className={styles.letter}
-								variants={letterVariant}
-							>
-								{letter}
-							</motion.span>
-						))}
+						{letters("ARSZAGI")}
 					</motion.h1>
 
 					<motion.p className={styles.role} {...fadeUp}>
@@ -120,17 +110,10 @@ export default function Home() {
 				</motion.a>
 			</section>
 
-			{(projects === null || featured) && (
-				<FeaturedProject
-					project={featured ?? null}
-					className={styles.section}
-				/>
-			)}
+			<FeaturedProject project={featured} className={styles.section} />
 
 			<section className={styles.section}>
-				<h2 className={styles.sectionLabel}>
-					About
-				</h2>
+				<h2 className={styles.sectionLabel}>About</h2>
 				<motion.p className={styles.aboutText} {...reveal}>
 					I'm a final-year Multimedia & Creative Technology student at Erasmus
 					University College Brussels. I build for the web because I like seeing
@@ -142,10 +125,7 @@ export default function Home() {
 			</section>
 
 			<section className={styles.section}>
-				<h2 className={styles.sectionLabel}>
-					Skills
-				</h2>
-
+				<h2 className={styles.sectionLabel}>Skills</h2>
 				<motion.ul className={styles.skills} {...reveal}>
 					{SKILLS.map((skill) => (
 						<li key={skill} className={styles.skill}>
@@ -154,6 +134,6 @@ export default function Home() {
 					))}
 				</motion.ul>
 			</section>
-		</div>
+		</>
 	);
 }
