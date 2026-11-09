@@ -28,13 +28,6 @@ class ProjectForm
                         'Group Project' => 'Group Project',
                     ])
                     ->required(),
-                Select::make('type')
-                    ->options([
-                        'development' => 'Development',
-                        'design' => 'Design',
-                    ])
-                    ->helperText('React and Laravel filters come from the tools list.')
-                    ->required(),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),

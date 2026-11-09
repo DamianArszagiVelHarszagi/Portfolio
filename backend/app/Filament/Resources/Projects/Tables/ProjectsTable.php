@@ -21,7 +21,6 @@ class ProjectsTable
                     ->disk('public'),
                 TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('type'),
             ])
             ->defaultSort('position')
             ->recordActions([

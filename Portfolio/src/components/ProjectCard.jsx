@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import TagList from "./TagList";
+import Tags from "./Tags";
 import styles from "./ProjectCard.module.css";
 
 function GitHubIcon() {
@@ -51,10 +51,7 @@ export default function ProjectCard({ project, index, delay = 0 }) {
 			</div>
 
 			<div className={styles.frame}>
-				<div
-					className={`${styles.panel} ${project.accent_color ? styles.accent : ""}`}
-					style={project.accent_color ? { "--accent": project.accent_color } : undefined}
-				>
+				<div className={styles.panel}>
 					<p className={styles.description}>{project.description}</p>
 					<div className={styles.mockup}>
 						<img
@@ -67,7 +64,7 @@ export default function ProjectCard({ project, index, delay = 0 }) {
 				</div>
 			</div>
 
-			<TagList items={project.tools} />
+			<Tags items={project.tools} className={styles.tags} />
 		</motion.article>
 	);
 }

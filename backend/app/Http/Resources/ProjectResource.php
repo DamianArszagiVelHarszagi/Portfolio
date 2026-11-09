@@ -20,7 +20,6 @@ class ProjectResource extends JsonResource
             'slug' => $this->slug,
             'title' => $this->title,
             'category' => $this->category,
-            'type' => $this->type,
             'description' => $this->description,
             'tools' => $this->tools,
             'image' => $this->image ? Storage::disk('public')->url($this->image) : null,

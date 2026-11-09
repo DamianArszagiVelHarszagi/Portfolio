@@ -99,14 +99,8 @@
 	background: rgba(245, 245, 245, 0.04);
 }
 
-.accent {
-	background:
-		radial-gradient(
-			ellipse 70% 60% at 50% 100%,
-			color-mix(in srgb, var(--accent) 35%, transparent),
-			transparent
-		),
-		rgba(245, 245, 245, 0.04);
+.tags {
+	font-size: 14px;
 }
 
 .description {

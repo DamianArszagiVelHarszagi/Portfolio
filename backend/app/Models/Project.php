@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
     'slug',
     'title',
     'category',
-    'type',
     'description',
     'tools',
     'image',
