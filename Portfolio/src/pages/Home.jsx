@@ -82,7 +82,7 @@ export default function Home() {
 					<motion.h1
 						className={styles.name}
 						variants={nameContainer}
-						initial={reduceMotion ? "animate" : "initial"}
+						initial="initial"
 						animate="animate"
 					>
 						{"DAMIAN".split("").map((letter, i) => (
